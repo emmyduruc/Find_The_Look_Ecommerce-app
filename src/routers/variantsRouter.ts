@@ -12,9 +12,9 @@ const router = express.Router()
 
 // Every path we define here will get /api/v1/movies prefix
 router.get('/', findAllVariant)
-router.get('/:variantId', findVariantByTitle)
-router.put('/:variantId', updateVariant)
-router.delete('/:variantId', deleteVariant)
+router.get('/:variantTitle', findVariantByTitle)
+router.put('/:variantTitle', updateVariant)
+router.delete('/:variantTitle', deleteVariant)
 router.post('/', createVariant)
 
 export default router

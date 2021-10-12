@@ -10,8 +10,9 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    const { firstName, lastName, address, sex, product = [] } = req.body
+    const { userId, firstName, lastName, address, sex, product = [] } = req.body
     const user = new UserModel({
+      userId,
       firstName,
       lastName,
       address,
@@ -74,7 +75,7 @@ export const findUserById = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await UserService.findUserById(req.params.movieId))
+    res.json(await UserService.findUserById(req.params.userId))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

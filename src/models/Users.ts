@@ -7,7 +7,6 @@ export type UserDocument = Document & {
   lastName: string
   address: string
   sex: string
-  //   female: boolean
   product: string[]
 }
 
