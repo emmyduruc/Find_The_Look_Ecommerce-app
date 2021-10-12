@@ -10,11 +10,28 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    const { userId, firstName, lastName, address, sex, product = [] } = req.body
+    const {
+      userId,
+      firstName,
+      lastName,
+      country,
+      state,
+      houseNumber,
+      phoneNumber,
+      postcode,
+      address,
+      sex,
+      product = [],
+    } = req.body
     const user = new UserModel({
       userId,
       firstName,
       lastName,
+      country,
+      state,
+      houseNumber,
+      phoneNumber,
+      postcode,
       address,
       sex,
       product,
