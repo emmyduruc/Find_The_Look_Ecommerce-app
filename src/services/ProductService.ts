@@ -1,11 +1,33 @@
 import { ProductDocument } from '../models/Products'
+import { UserDocument } from '../models/Users'
 import Products from '../models/Products'
+import Users from '../models/Users'
 import { NotFoundError } from '../helpers/apiError'
 
 //POST
 const createProduct = async (productDocument: ProductDocument) => {
   const createdProduct = await productDocument.save()
-  return createdProduct
+  const allCreatedProduct = await createdProduct
+    .populate('users')
+    .execPopulate()
+  return allCreatedProduct
+}
+
+const usersProduct = async (
+  productId: string,
+  userId: string,
+  update: Partial<ProductDocument>
+) => {
+  const foundProduct = await Products.findById(productId)
+  console.log('still working', foundProduct)
+
+  // const ProductUserId = await foundProduct.exists({ _id: _Id })
+
+  if (!foundProduct) {
+    throw new NotFoundError(`Product ${productId} not found`)
+  }
+  foundProduct.users.push(userId)
+  return await foundProduct.save()
 }
 
 //PUT
@@ -54,6 +76,7 @@ const findAllProduct = async (): Promise<ProductDocument[]> => {
 }
 
 export default {
+  usersProduct,
   createProduct,
   findProductById,
   findAllProduct,

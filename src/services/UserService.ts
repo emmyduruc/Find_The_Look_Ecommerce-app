@@ -1,6 +1,12 @@
 import { UserDocument } from '../models/Users'
 import Users from '../models/Users'
+import { ProductDocument } from '../models/Products'
+import Products from '../models/Products'
 import { NotFoundError } from '../helpers/apiError'
+
+// const productUsers = async () => {
+
+// }
 
 //POST
 const createUser = async (userDocument: UserDocument) => {

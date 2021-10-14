@@ -10,12 +10,13 @@ export const createProduct = async (
   next: NextFunction
 ) => {
   try {
-    const { productId, productName, price, category, users, variant } = req.body
+    const { productType, productName, price, category, users, variant } =
+      req.body
     const products = new ProductModel({
-      productId,
       productName,
       price,
       category,
+      productType,
       users,
       variant,
     })
@@ -41,6 +42,30 @@ export const updateProduct = async (
     const productId = req.params.productId
     const updatedProduct = await ProductService.updateProduct(productId, update)
     res.json(updatedProduct)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+export const usersProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const update = req.body
+    const productId = req.params.productId
+    const userId = req.body.userId
+
+    const usersProductsUpdate = await ProductService.usersProduct(
+      productId,
+      userId,
+      update
+    )
+    res.json(usersProductsUpdate)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
@@ -101,7 +126,3 @@ export const findAllProduct = async (
     }
   }
 }
-//   findUserById,
-//   deleteUser,
-//   findAllUser,
-//   updateUser,

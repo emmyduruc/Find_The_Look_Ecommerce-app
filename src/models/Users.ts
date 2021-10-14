@@ -2,7 +2,7 @@
 import mongoose, { Document } from 'mongoose'
 
 export type UserDocument = Document & {
-  userId: string
+  _Id: string //do not specify it
   firstName: string
   lastName: string
   country: string
@@ -11,8 +11,11 @@ export type UserDocument = Document & {
   phoneNumber?: string
   postcode?: string
   address: string
+  email: string
   sex: string
+  password: string
   product: string[]
+  cart: string[]
 }
 
 const userSchema = new mongoose.Schema({
@@ -47,8 +50,24 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: [true, '😀😀Add an email.'],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, '😋😋Add a password.'],
+    minlength: 4,
+    select: false,
+  },
   sex: String,
-
+  cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId
+      ref: 'Products', //referencing to Products(table)/model
+    },
+  ],
   product: [
     {
       type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId
