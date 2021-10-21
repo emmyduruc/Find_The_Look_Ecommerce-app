@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles,  } from '@material-ui/core/styles'
+import { Link as LinkRouter } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
          height: '100vh',
        },
        image: {
-         backgroundImage: 'url(https://source.unsplash.com/random)',
+         backgroundImage: 'url(https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80)',
          backgroundRepeat: 'no-repeat',
          backgroundColor:
            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -57,6 +58,9 @@ const Login = () => {
                   </Avatar>
                   <Typography component="h1" variant="h5">
                     Sign in
+                  </Typography>
+                  <Typography component="h1" variant="h5">
+                    Welcome Back ....
                   </Typography>
                   <form className={classes.form} noValidate>
                     <TextField
@@ -101,9 +105,11 @@ const Login = () => {
                         </Link>
                       </Grid>
                       <Grid item>
+                        <LinkRouter to = {'/signup'}>
                         <Link href="#" variant="body2">
                           {"Don't have an account? Sign Up"}
                         </Link>
+                        </LinkRouter>
                       </Grid>
                     </Grid>
                     <Box mt={5}>

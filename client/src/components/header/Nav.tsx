@@ -1,19 +1,5 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-// import MenuIcon from '@material-ui/icons/Menu'
-import TextField from '@material-ui/core/TextField'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import PersonIcon from '@material-ui/icons/Person'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import { DropdownButton, Button, Dropdown } from 'react-bootstrap'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import PhoneIcon from '@material-ui/icons/Phone'
-// import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import EmailIcon from '@material-ui/icons/Email'
+import { Link } from 'react-router-dom'
 
 import { Badge } from '@material-ui/core'
 import { Search, ShoppingCartOutlined } from '@material-ui/icons'
@@ -96,17 +82,25 @@ const Navbar = () => {
           </SearchContainer>
           <MenuItem>THEME FAQ'S</MenuItem>
         </Left>
-        <Center>
-          <Logo>FEEDTHELOOK.</Logo>
-        </Center>
+        <Link to={'/'}>
+          <Center>
+            <Logo>FEEDTHELOOK.</Logo>
+          </Center>
+        </Link>
         <Right>
           <MenuItem>NEED HELP?</MenuItem>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <Link to={'/signUp'}>
+            <MenuItem>SIGN UP</MenuItem>
+          </Link>
+          <Link to={'/login'}>
+            <MenuItem>SIGN IN</MenuItem>
+          </Link>
           <MenuItem>
+          <Link to = {'/cart'}>
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />
             </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>

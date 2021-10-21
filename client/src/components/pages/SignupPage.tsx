@@ -1,5 +1,6 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
+import { Link as LinkRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
@@ -142,9 +143,11 @@ const SignupPage = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
+                <LinkRouter to={'/login'}>
                 <Link href="#" variant="body2">
                   Already have an account? Sign in
                 </Link>
+                </LinkRouter>
 
                 <GoogleLogin
                   className={classes.form}

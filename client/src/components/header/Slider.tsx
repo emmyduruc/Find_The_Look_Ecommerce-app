@@ -202,8 +202,8 @@ const Slider = () => {
           </CarouselContainer>
         </Carousel.Item>
       </Carousel>
-      <DropDownContainers style={{ backgroundColor: '#88a096' }}>
-        <DropdownButton
+      <DropDownContainers style={{ backgroundColor: '#88a096' }} >
+        <DropdownButton 
           variant="success"
           title="CATEGORIES"
           id="dropdown-menu-align-right"
@@ -220,6 +220,7 @@ const Slider = () => {
           inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
       </DropDownContainers>
+      
     </div>
   )
 }
