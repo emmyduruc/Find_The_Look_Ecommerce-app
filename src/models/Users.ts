@@ -14,15 +14,16 @@ export type UserDocument = Document & {
   email: string
   sex: string
   password: string
+  picture: string
   product: string[]
   cart: string[]
 }
 
 const userSchema = new mongoose.Schema({
-  userId: {
-    type: String,
-    required: true,
-  },
+  // userId: {
+  //   type: String,
+  //   required: true,
+  // },
   firstName: {
     type: String,
     required: true,
@@ -48,7 +49,6 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -57,17 +57,19 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, '😋😋Add a password.'],
     minlength: 4,
     select: false,
   },
+  picture: {
+    type: String,
+  },
   sex: String,
-  cart: [
-    {
-      type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId
-      ref: 'Products', //referencing to Products(table)/model
-    },
-  ],
+  // cart: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId
+  //     ref: 'Products', //referencing to Products(table)/model
+  //   },
+  // ],
   product: [
     {
       type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId

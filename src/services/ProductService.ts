@@ -7,10 +7,8 @@ import { NotFoundError } from '../helpers/apiError'
 //POST
 const createProduct = async (productDocument: ProductDocument) => {
   const createdProduct = await productDocument.save()
-  const allCreatedProduct = await createdProduct
-    .populate('users')
-    .execPopulate()
-  return allCreatedProduct
+
+  return createdProduct
 }
 
 const usersProduct = async (
@@ -18,7 +16,9 @@ const usersProduct = async (
   userId: string,
   update: Partial<ProductDocument>
 ) => {
-  const foundProduct = await Products.findById(productId)
+  const foundProduct = await Products.findById(productId, userId, {
+    new: true,
+  })
   console.log('still working', foundProduct)
 
   // const ProductUserId = await foundProduct.exists({ _id: _Id })
@@ -61,8 +61,7 @@ const deleteProduct = async (
 
 //GET
 const findProductById = async (productId: string): Promise<ProductDocument> => {
-  const foundProduct = await Products.findById(productId)
-
+  const foundProduct = await Products.findById(productId).populate('users')
   if (!foundProduct) {
     throw new NotFoundError(`Product ${productId} not found`)
   }

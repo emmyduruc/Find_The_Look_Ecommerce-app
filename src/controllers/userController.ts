@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import UserModel from '../models/Users'
 import UserService from '../services/userService'
 import { BadRequestError } from '../helpers/apiError'
-
+import { UserDocument } from '../models/Users'
 //POST/creates Users
 export const createUser = async (
   req: Request,
@@ -55,6 +55,8 @@ export const updateUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  const userData = req.user as UserDocument
+  console.log('userData...', userData)
   try {
     const update = req.body
     const userId = req.params.userId

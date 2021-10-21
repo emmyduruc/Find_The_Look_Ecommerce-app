@@ -3,12 +3,15 @@ import React from 'react';
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './components/header/Nav';
-import LandingPage from './components/pages/LandingPage';
+import Home from './components/home/Home';
+import LoginPage from './components/Login/LoginPage';
+
 
 function App() {
   return (
     <div>
-      <LandingPage/>
+      <Home/>
+      {/* <LoginPage/> */}
     </div>
   );
 }
