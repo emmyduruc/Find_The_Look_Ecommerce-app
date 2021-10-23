@@ -1,4 +1,5 @@
 import express from 'express'
+import passport from 'passport'
 
 import {
   createProduct,
@@ -8,6 +9,7 @@ import {
   updateProduct,
   usersProduct,
 } from '../controllers/productController'
+import adminCheck from '../middlewares/adminCheck'
 
 const router = express.Router()
 

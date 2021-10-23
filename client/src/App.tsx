@@ -7,7 +7,10 @@ import Nav from './components/header/Nav'
 import Home from './components/home/Home'
 import LoginPage from './components/Login/LoginPage'
 import SignupPage from './components/pages/SignupPage'
+import NeedHelp from './components/pages/NeedHelp'
+import ProductList from './components/pages/ProductList'
 import Cart from './components/pages/Cart'
+import CheckOut from './components/pages/CheckOut'
 
 
 function App() {
@@ -24,10 +27,18 @@ function App() {
         <Route exact path="/login">
           <LoginPage />
         </Route>
+        <Route exact path="/contact">
+          <NeedHelp/>
+        </Route>
         <Route exact path="/cart">
           <Cart />
         </Route>
-        
+        <Route exact path="/checkout">
+          <CheckOut />
+        </Route>
+        <Route exact path="/shop">
+          <ProductList />
+        </Route>
       </Switch>
       </Router>
       {/* <LoginPage/> */}

@@ -10,13 +10,11 @@ export const createVariant = async (
   next: NextFunction
 ) => {
   try {
-    const { title, brand, color, sizes, description } = req.body
+    const { brand, color, sizes } = req.body
     const products = new VariantModel({
-      title,
       brand,
       color,
       sizes,
-      description,
     })
     const createdVariant = await VariantService.createVariant(products)
     res.json(createdVariant)

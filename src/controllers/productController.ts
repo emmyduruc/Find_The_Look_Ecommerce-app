@@ -10,13 +10,24 @@ export const createProduct = async (
   next: NextFunction
 ) => {
   try {
-    const { productType, productName, price, category, users, variant } =
-      req.body
+    const {
+      title,
+      description,
+      productName,
+      price,
+      image,
+      category,
+      users,
+      variant,
+    } = req.body
     const products = new ProductModel({
       productName,
       price,
       category,
-      productType,
+      title,
+      image,
+      description,
+
       users,
       variant,
     })

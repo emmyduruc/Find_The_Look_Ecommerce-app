@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { mobile } from './Responsive'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
   flex: 1;
@@ -50,6 +51,7 @@ type Props = {
     id: number
     img: string
     title: string
+  
   }
 }
 
@@ -62,7 +64,9 @@ const CategoryItem = ({ item }: Props) => {
       />
       <Info>
         <Title>{item.title}</Title>
+        <Link to = {'/shop'}>
         <Button>SHOP NOW</Button>
+        </Link>
       </Info>
     </Container>
   )

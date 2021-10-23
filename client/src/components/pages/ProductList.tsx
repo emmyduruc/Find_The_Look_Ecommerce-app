@@ -7,6 +7,7 @@ import Nav from "../header/Nav";
 import Products from "./Products";
 import Newsletter from "./Newsletter";
 import { mobile } from "./Responsive";
+import ProductsHome from "../home/ProductsHome";
 
 const Container = styled.div``;
 
@@ -37,12 +38,18 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
-
+type Props = {
+  item: {
+    id: number
+    img: string
+    title: string
+  }
+}
 const ProductList = () => {
   return (
     <Container>
-      <Nav />
-      <Announcement />
+      <Announcement /> 
+       <Nav />
       <Title>Dresses</Title>
       <FilterContainer>
         <Filter>
@@ -78,7 +85,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products />
+      <ProductsHome />
       <Newsletter />
       <Footer />
     </Container>

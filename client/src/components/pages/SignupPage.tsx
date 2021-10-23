@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Avatar from '@material-ui/core/Avatar'
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
@@ -14,7 +14,12 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import GoogleLogin from 'react-google-login'
+import Announcement from '../header/Announcement'
+import Footer from '../footer/Footer'
+import Navbar from '../header/Nav'
+import Newsletter from './Newsletter'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,31 +46,34 @@ const useStyles = makeStyles((theme) => ({
 }))
 type Response = {
   token: string
+  user: { firstName: string; lastName: string; email: string; password: string }
 }
 
 const SignupPage = () => {
   const classes = useStyles()
-
+  let history = useHistory()
   const responseGoogle = async (response: any) => {
     console.log(response.tokenId)
     const tokenId = response.tokenId
-    const result = await axios.post<Response>(
-      'http://localhost:5000/api/v1/google/login',
-      {
-        id_token: tokenId,
-      }
-    )
+    const result = await axios.post<Response>('/google/login', {
+      id_token: tokenId,
+    })
+    const token = result.data.token
+    const userData = result.data.user
     console.log('result', result.data.token)
     localStorage.setItem('token', result.data.token)
     //  const jwtToken = result.data.token
     if (result.status === 200) {
-      // history.push('/home')
+      history.push('/')
       //for routing from google signup button to the home page(logged in)
     }
   }
-  console.log('env', process.env.REACT_APP_GOOGLE_CLIENT_ID )
+
+  console.log('env', process.env.REACT_APP_GOOGLE_CLIENT_ID)
   return (
     <div>
+      <Announcement />
+      <Navbar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -141,12 +149,13 @@ const SignupPage = () => {
             >
               Sign Up
             </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <LinkRouter to={'/login'}>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                  <Link href="#" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
                 </LinkRouter>
 
                 <GoogleLogin
@@ -168,6 +177,8 @@ const SignupPage = () => {
         </div>
         <Box mt={5}></Box>
       </Container>
+      <Newsletter />
+      <Footer />
     </div>
   )
 }

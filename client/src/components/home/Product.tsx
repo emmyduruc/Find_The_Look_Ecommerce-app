@@ -65,18 +65,26 @@ const Icon = styled.div`
   }
 `
 
-type Props = {
-  item: {
-    id: number
-    img: string
-  }
+// type Props = {
+//   item: {
+//     id: number
+//     img: string
+//   }
+// }
+
+type Products ={
+  image: string
+  _id: string
+  productName: string
+  price: string
+  description: string
 }
 
-const Product = ({ item }: Props) => {
+const Product = ({ item }: any) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image  src={item.image}  key={item._id}/>
       <Info>
         <Icon>
           <ShoppingCartOutlined />

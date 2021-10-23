@@ -8,7 +8,7 @@ const goggleLoginUsers = (req: Request, res: Response, next: NextFunction) => {
   //creates a token when the user login, receives three parameters: userData and if the userData contains a password destructure and omit the password
   const token = jwt.sign({ userData }, JWT_SECRET, { expiresIn: '1hr' })
   console.log('userdata', userData) //ask???
-  res.json({ token: token })
+  res.json({ token: token, user: userData })
 }
 
 export default goggleLoginUsers

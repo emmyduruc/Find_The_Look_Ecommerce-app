@@ -1,24 +1,21 @@
 /* eslint-disable @typescript-eslint/member-delimiter-style */
 import mongoose, { Document } from 'mongoose'
+import { type } from 'os'
 
 export type ProductDocument = Document & {
   _id: string
   productName: string
   price: string
-  category: string[]
-  productType: string
+  title: string
+  description: string
+  category: string
+
   users: string[]
   variant: string[]
+  image: string
 }
 
 const ProductSchema = new mongoose.Schema({
-  // productId: {
-  //   type: String,
-  //   unique: true,
-  //   index: true,
-  //   required: true,
-  // },
-
   productName: {
     type: String,
     required: true,
@@ -28,11 +25,19 @@ const ProductSchema = new mongoose.Schema({
     required: true,
     decimal: true,
   },
-  category: [String],
-  productType: {
+  category: {
     type: String,
-    required: true,
   },
+  title: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+
   users: [
     {
       type: mongoose.Schema.Types.ObjectId, // product property will be an array of objectId

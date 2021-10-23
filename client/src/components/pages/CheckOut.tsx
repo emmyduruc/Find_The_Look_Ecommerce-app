@@ -13,6 +13,10 @@ import Typography from '@material-ui/core/Typography'
 import AddressForm from './AddressForm'
 import PaymentForm from './PaymentForm'
 import Review from './Review'
+import Announcement from "../header/Announcement";
+import Footer from "../footer/Footer";
+import Nav from "../header/Nav";
+import Newsletter from "./Newsletter";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -78,13 +82,11 @@ const CheckOut = () => {
   }
   return (
        <React.Fragment>
+         <Announcement /> 
+       <Nav />
          <CssBaseline />
          <AppBar position="absolute" color="default" className={classes.appBar}>
-           <Toolbar>
-             <Typography variant="h6" color="inherit" noWrap>
-               Company name
-             </Typography>
-           </Toolbar>
+
          </AppBar>
          <div className={classes.layout}>
            <Paper className={classes.paper}>
@@ -132,6 +134,8 @@ const CheckOut = () => {
              </React.Fragment>
            </Paper>
            </div>
+           <Newsletter />
+      <Footer />
        </React.Fragment>
      );
 }

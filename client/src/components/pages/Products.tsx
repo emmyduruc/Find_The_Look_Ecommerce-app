@@ -117,8 +117,8 @@ const Button = styled.button`
 const Product = () => {
   return (
     <Container>
-      <Navbar />
-      <Announcement />
+      {/* <Navbar />
+      <Announcement /> */}
       <Wrapper>
         <ImgContainer>
           <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
@@ -161,8 +161,8 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
-      <Footer />
+      {/* <Newsletter />
+      <Footer /> */}
     </Container>
   );
 };
