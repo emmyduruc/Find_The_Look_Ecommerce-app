@@ -30,7 +30,7 @@ const Container = styled.div`
   height: 350px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #f5fbfd;
   position: relative;
   &:hover ${Info} {
@@ -81,6 +81,7 @@ const NewArrivals = () => {
       </Header>
 
       <Container>
+        
         <Circle />
         <Image
           src="https://images.unsplash.com/photo-1611042553365-9b101441c135?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9kZWwlMjBnaXJsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"

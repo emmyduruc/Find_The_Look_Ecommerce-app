@@ -1,8 +1,8 @@
 import React, {useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { popularProducts } from '../../SliderItems'
-import { categories } from '../../SliderItems'
 import Product from './Product'
+import { ProductType } from '../redux/types'
+
 import axios from 'axios'
 const Container = styled.div`
   padding: 20px;
@@ -10,20 +10,14 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `
-type Products ={
-  image: string
-  _id: string
-  productName: string
-  price: string
-  description: string
-}
+
 
 const ProductsHome = () => {
-  const [product, setProduct] = useState<any[]>([])
+  const [product, setProduct] = useState<ProductType[]>([])
 
 
   const getAllProducts = async () => {
-    const products = await axios.get<any[]>('/products')
+    const products = await axios.get<ProductType[]>('/products')
     setProduct(products.data)
     console.log('products', products)
   }

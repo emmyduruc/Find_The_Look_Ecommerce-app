@@ -1,4 +1,4 @@
-export type Product = {
+export type ProductType = {
   _id: string
   productName: string
   price: string
@@ -6,5 +6,11 @@ export type Product = {
   productType: string
   users: string[]
   variant: string[]
+  image: string
+  title: string
  
+}
+
+export type Error = {
+  error : string
 }

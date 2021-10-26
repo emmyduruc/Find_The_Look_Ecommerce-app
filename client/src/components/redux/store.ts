@@ -3,8 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import cartReducer from './reducers/cart/cartReducer'
 import productReducer from './reducers/products/productReducer'
+import themeReducer from './reducers/themes/themeReducer'
 
-const rootReducers = combineReducers( productReducer )
+
+const rootReducers = combineReducers( {productReducer,cartReducer,themeReducer } )
 
 const storeFactory = () => {
   const middleware = [thunk]
@@ -16,4 +18,4 @@ const storeFactory = () => {
   return reduxStore
 }
 
-export default storeFactory
+export default  storeFactory

@@ -1,95 +1,186 @@
+import { Add, Remove } from '@material-ui/icons'
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import axios from 'axios'
+import { ProductType } from '../redux/types'
+import Announcement from '../header/Announcement'
+import Footer from '../footer/Footer'
+import Navbar from '../header/Nav'
+import Newsletter from './Newsletter'
+import { mobile } from './Responsive'
 
-import styled from "styled-components";
+const Container = styled.div``
 
-import Announcement from "../header/Announcement";
-import Footer from "../footer/Footer";
-import Nav from "../header/Nav";
-import Products from "./Products";
-import Newsletter from "./Newsletter";
-import { mobile } from "./Responsive";
-import ProductsHome from "../home/ProductsHome";
+const Wrapper = styled.div`
+  padding: 50px;
+  display: flex;
+  ${mobile({ padding: '10px', flexDirection: 'column' })}
+`
 
-const Container = styled.div``;
+const ImgContainer = styled.div`
+  flex: 1;
+`
+
+const Image = styled.img`
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
+  ${mobile({ height: '40vh' })}
+`
+
+const InfoContainer = styled.div`
+  flex: 1;
+  padding: 0px 50px;
+  ${mobile({ padding: '10px' })}
+`
 
 const Title = styled.h1`
-  margin: 20px;
-`;
+  font-weight: 200;
+`
+
+const Desc = styled.p`
+  margin: 20px 0px;
+`
+
+const Price = styled.span`
+  font-weight: 100;
+  font-size: 40px;
+`
 
 const FilterContainer = styled.div`
+  width: 50%;
+  margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-`;
+  ${mobile({ width: '100%' })}
+`
 
 const Filter = styled.div`
-  margin: 20px;
-  ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
-`;
+  display: flex;
+  align-items: center;
+`
 
-const FilterText = styled.span`
+const FilterTitle = styled.span`
   font-size: 20px;
-  font-weight: 600;
-  margin-right: 20px;
-  ${mobile({ marginRight: "0px" })}
-`;
+  font-weight: 200;
+`
 
-const Select = styled.select`
-  padding: 10px;
-  margin-right: 20px;
-  ${mobile({ margin: "10px 0px" })}
-`;
-const Option = styled.option``;
-type Props = {
-  item: {
-    id: number
-    img: string
-    title: string
+const FilterColor = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  margin: 0px 5px;
+  cursor: pointer;
+`
+
+const FilterSize = styled.select`
+  margin-left: 10px;
+  padding: 5px;
+`
+
+const FilterSizeOption = styled.option``
+
+const AddContainer = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  ${mobile({ width: '100%' })}
+`
+
+const AmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+`
+
+const Amount = styled.span`
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+`
+
+const Button = styled.button`
+  padding: 15px;
+  border: 2px solid teal;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    background-color: #f8f4f4;
   }
+`
+type Params = {
+  productId: string
 }
 const ProductList = () => {
+  const [products, setProduct] = useState<ProductType | null>(null)
+  console.log('products list', products)
+  const { productId } = useParams<Params>()
+
+  useEffect(() => {
+    axios
+      .get<ProductType>(`/products/${productId}`)
+      .then((res) => setProduct(res.data))
+  }, [productId])
   return (
     <Container>
-      <Announcement /> 
-       <Nav />
-      <Title>Dresses</Title>
-      <FilterContainer>
-        <Filter>
-          <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
-              Color
-            </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
-          </Select>
-          <Select>
-            <Option disabled selected>
-              Size
-            </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
-          </Select>
-        </Filter>
-        <Filter>
-          <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
-          </Select>
-        </Filter>
-      </FilterContainer>
-      <ProductsHome />
+      <Announcement />
+      <Navbar />
+      <Wrapper>
+        <ImgContainer>
+          {products && <Image src={products.image} />}
+          {/* <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" /> */}
+        </ImgContainer>
+        <InfoContainer>
+          {products && <Title> {products.title}</Title>}
+          <Desc>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
+            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
+            tristique tortor pretium ut. Curabitur elit justo, consequat id
+            condimentum ac, volutpat ornare.
+          </Desc>
+          {products &&<Price>{products.price}</Price>}
+          <FilterContainer>
+            <Filter>
+              <FilterTitle>Color</FilterTitle>
+              <FilterColor color="black" />
+              <FilterColor color="darkblue" />
+              <FilterColor color="gray" />
+            </Filter>
+            <Filter>
+              <FilterTitle>Size</FilterTitle>
+              <FilterSize>
+                <FilterSizeOption>XS</FilterSizeOption>
+                <FilterSizeOption>S</FilterSizeOption>
+                <FilterSizeOption>M</FilterSizeOption>
+                <FilterSizeOption>L</FilterSizeOption>
+                <FilterSizeOption>XL</FilterSizeOption>
+              </FilterSize>
+            </Filter>
+          </FilterContainer>
+          <AddContainer>
+            <AmountContainer>
+              <Remove />
+              <Amount>1</Amount>
+              <Add />
+            </AmountContainer>
+            <Button>ADD TO CART</Button>
+          </AddContainer>
+        </InfoContainer>
+      </Wrapper>
       <Newsletter />
       <Footer />
     </Container>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

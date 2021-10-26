@@ -23,11 +23,11 @@ axios.interceptors.request.use((request) => {
 })
 
 ReactDOM.render(
-  // <Provider store={reduxStore}>
+   <Provider store={reduxStore}>
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
-  // {/* </Provider>, */}
+    </React.StrictMode>
+   </Provider>,
   document.getElementById('root')
 )
 

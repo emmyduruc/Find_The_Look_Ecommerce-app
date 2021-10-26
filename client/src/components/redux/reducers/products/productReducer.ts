@@ -1,11 +1,13 @@
 import {AllActions} from '../../actions'
 
+
+
 const initState = {
   products: [],
   productId: []
 }
 
-const productReducer = (state = initState, action: AllActions) => {
+const productReducer = (state = initState, action: AllActions ) => {
   switch (action.type) {
     case 'PRODUCT_LIST':
       const productsPayload = action.payload
@@ -19,7 +21,10 @@ const productReducer = (state = initState, action: AllActions) => {
           ...state,
           productId: productId,
         }
+        default:
+      return state;
   }
+
 }
 
 export default productReducer

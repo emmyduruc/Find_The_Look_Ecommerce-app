@@ -23,21 +23,30 @@ export const SliderItems = [
      ];
    
      export const categories = [
-       {
-         id: 1,
-         img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-         title: "SHIRT STYLE!",
-       },
+      {
+        id: 1,
+        img: "https://media.istockphoto.com/photos/portrait-of-young-female-architect-picture-id481292763?b=1&k=20&m=481292763&s=170667a&w=0&h=byTGzNIP6TlPLBQzzD3h0iy-hy3A0Me3fej2PpLqqw4=",
+       //  img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        title: "SHIRT STYLE!",
+      },
        {
          id: 2,
-         img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+         img: "https://images.unsplash.com/photo-1605405747924-2709f6783d0a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bG91bmdld2VhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
          title: "LOUNGEWEAR LOVE",
        },
+       
        {
          id: 3,
-         img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        //  img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+         img: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWVuJTIwb24lMjBqYWNrZXRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
          title: "LIGHT JACKETS",
        },
+      //  {
+      //   id: 3,
+      //   img: "https://images.unsplash.com/photo-1511196044526-5cb3bcb7071b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+      //   title: "SNEAKERS",
+      // },
+      
      ];
    
      export const popularProducts = [

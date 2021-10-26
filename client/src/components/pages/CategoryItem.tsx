@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom'
 
 const Container = styled.div`
   flex: 1;
-  margin: 3px;
+
+   background-color: #fff7f7;
   height: 70vh;
   position: relative;
+  
 `
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  ${mobile({ height: '20vh' })}
+  ${mobile({ height: '60vh' })}
 `
 
 const Info = styled.div`
@@ -29,8 +31,9 @@ const Info = styled.div`
 `
 
 const Title = styled.h1`
-  color: white;
+  color: #ffcc;
   margin-bottom: 20px;
+  ${mobile({ padding: '0px', fontSize: '17px' })}
 `
 
 const Button = styled.button`
@@ -41,10 +44,12 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
   text-decoration: #f00 solid underline;
+ 
   &:hover {
     background-color: #88A096;
     color: white;
   }
+  ${mobile({ padding: '0px', fontSize: '19px',backgroundColor: 'transparent',cursor: 'pointer'})}
 `
 type Props = {
   item: {
@@ -74,6 +79,3 @@ const CategoryItem = ({ item }: Props) => {
 
 export default CategoryItem
 
-// { item }
-// {item.title}
-// {item.img}

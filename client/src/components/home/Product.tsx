@@ -3,7 +3,10 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from '@material-ui/icons'
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
+
 
 const Info = styled.div`
   opacity: 0;
@@ -65,26 +68,14 @@ const Icon = styled.div`
   }
 `
 
-// type Props = {
-//   item: {
-//     id: number
-//     img: string
-//   }
-// }
 
-type Products ={
-  image: string
-  _id: string
-  productName: string
-  price: string
-  description: string
-}
-
-const Product = ({ item }: any) => {
+const Product = ({ item }:any) => {
   return (
     <Container>
+     
       <Circle />
       <Image  src={item.image}  key={item._id}/>
+      
       <Info>
         <Icon>
           <ShoppingCartOutlined />
@@ -95,6 +86,11 @@ const Product = ({ item }: any) => {
         <Icon>
           <FavoriteBorderOutlined />
         </Icon>
+         <Link to = {`/productPage/${item._id}`}>
+        <Icon>
+          <VisibilityIcon/>
+        </Icon>
+      </Link>
       </Info>
     </Container>
   )
