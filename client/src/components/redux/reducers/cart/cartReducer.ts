@@ -10,12 +10,7 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
   switch (action.type) {
     case 'INSERT_PRODUCTS': {
       const incomingProducts = action.payload
-      const existProduct = state.cart.find((productId) => {
-        if (productId.includes(productId)) {
-          return true
-        }
-        return false
-      })
+      const existProduct = state.cart.find(item=>item._id === incomingProducts._id)
       if (existProduct) {
         return state
       } else {
@@ -28,7 +23,7 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
     case 'REMOVE_PRODUCTS': {
       const incomingProductsId = action.payload
       const remainProduct = state.cart.filter(
-        (productId) => productId !== incomingProductsId
+        (item) => item._id !== incomingProductsId
       )
       return {
         ...state,

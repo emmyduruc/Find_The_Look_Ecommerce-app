@@ -156,15 +156,15 @@ const Button = styled.button`
 `
 
 const Cart = () => {
-  const CartCounter = useSelector((state:RootState) => {
+  const cartProducts = useSelector((state:RootState) => {
     return state.cartReducer.cart
   });
+  console.log('print product', cartProducts)
   return (
     <Container>
       <Announcement />
       <Navbar />
-      <Wrapper>
-        <Title>YOUR CART</Title>
+      <Title>YOUR CART</Title>
         <Top>
           <Link to={'/shop'}>
             <TopButton>CONTINUE SHOPPING</TopButton>
@@ -176,11 +176,18 @@ const Cart = () => {
 
           <TopButton>CHECKOUT NOW</TopButton>
         </Top>
+      {cartProducts.map((products) =>{
+
+      return(
+      <Wrapper>
+       
         <Bottom>
           <Info>
             <Product>
               <ProductDetail>
-                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
+                <Image src= {products.image}/>
+                <p>  {products.description} </p>
+                {/* <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" /> */}
                 <Details>
                   <ProductName>
                     <b>Product:</b> Yeez Sneaker
@@ -204,32 +211,12 @@ const Cart = () => {
               </PriceDetail>
             </Product>
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> T-SHIRT
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 439283718293fs
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
+            
           </Info>
+          </Bottom>
+      </Wrapper>
+      )})}
+        
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
@@ -252,8 +239,7 @@ const Cart = () => {
               <Button>CHECKOUT NOW</Button>
             </Link>
           </Summary>
-        </Bottom>
-      </Wrapper>
+      
       <Footer />
     </Container>
   )

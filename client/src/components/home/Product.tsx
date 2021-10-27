@@ -69,8 +69,9 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `
+type ProductProps = { item: ProductType }
 
-const Product = ({ item }: any) => {
+const Product = ({ item }: ProductProps) => {
   const dispatch = useDispatch()
   const products = item
   const insert = () => dispatch(insertCart(products))

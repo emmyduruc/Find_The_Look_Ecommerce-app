@@ -8,6 +8,7 @@ export type ProductType = {
   variant: string[]
   image: string
   title: string
+  description: string
 }
 
 export type Error = {
@@ -19,7 +20,7 @@ export type Themes = {
 }
 
 export type cartState = {
-  cart: string[]
+  cart: ProductType[]
   count: number
 }
 

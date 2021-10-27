@@ -45,7 +45,7 @@ export const displayError = (error: any) => {
     payload: error,
   }
 }
-export const insertCart = (products: string) => {
+export const insertCart = (products: ProductType) => {
   return {
     type: 'INSERT_PRODUCTS',
     payload: products,
