@@ -5,6 +5,8 @@ import Footer from '../footer/Footer'
 import Navbar from '../header/Nav'
 import { mobile } from '../pages/Responsive'
 import { Link } from 'react-router-dom'
+import { RootState } from '../redux/types'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div``
 
@@ -154,6 +156,9 @@ const Button = styled.button`
 `
 
 const Cart = () => {
+  const CartCounter = useSelector((state:RootState) => {
+    return state.cartReducer.cart
+  });
   return (
     <Container>
       <Announcement />

@@ -3,10 +3,12 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from '@material-ui/icons'
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityIcon from '@material-ui/icons/Visibility'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { insertCart } from '../redux/actions'
+import { ProductType } from '../redux/types'
 
 const Info = styled.div`
   opacity: 0;
@@ -68,17 +70,18 @@ const Icon = styled.div`
   }
 `
 
-
-const Product = ({ item }:any) => {
+const Product = ({ item }: any) => {
+  const dispatch = useDispatch()
+  const products = item
+  const insert = () => dispatch(insertCart(products))
   return (
     <Container>
-     
       <Circle />
-      <Image  src={item.image}  key={item._id}/>
-      
+      <Image src={item.image} key={item._id} />
+
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
+          <ShoppingCartOutlined onClick={insert} />
         </Icon>
         <Icon>
           <SearchOutlined />
@@ -86,11 +89,11 @@ const Product = ({ item }:any) => {
         <Icon>
           <FavoriteBorderOutlined />
         </Icon>
-         <Link to = {`/productPage/${item._id}`}>
-        <Icon>
-          <VisibilityIcon/>
-        </Icon>
-      </Link>
+        <Link to={`/productPage/${item._id}`}>
+          <Icon>
+            <VisibilityIcon />
+          </Icon>
+        </Link>
       </Info>
     </Container>
   )

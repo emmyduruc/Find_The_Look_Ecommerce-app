@@ -1,13 +1,16 @@
-import {AllActions} from '../../actions'
-
-
+import { AllActions } from '../../actions'
+import { ProductState } from '../../types'
 
 const initState = {
   products: [],
-  productId: []
+  productId: [],
+  error: null,
 }
 
-const productReducer = (state = initState, action: AllActions ) => {
+const productReducer = (
+  state: ProductState = initState,
+  action: AllActions
+) => {
   switch (action.type) {
     case 'PRODUCT_LIST':
       const productsPayload = action.payload
@@ -15,16 +18,23 @@ const productReducer = (state = initState, action: AllActions ) => {
         ...state,
         products: productsPayload,
       }
-      case 'PRODUCT_ID':
-        const productId = action.payload
-        return {
-          ...state,
-          productId: productId,
-        }
-        default:
-      return state;
-  }
+    case 'PRODUCT_ID': {
+      const productId = action.payload
+      return {
+        ...state,
+        productId: productId,
+      }
+    }
+    case 'FETCH_ERROR': {
+      const getPayloadError = action.payload
+      return {
+        error: getPayloadError,
+      }
+    }
 
+    default:
+      return state
+  }
 }
 
 export default productReducer

@@ -8,9 +8,33 @@ export type ProductType = {
   variant: string[]
   image: string
   title: string
- 
 }
 
 export type Error = {
-  error : string
+  error: string
+}
+
+export type Themes = {
+  theme: string
+}
+
+export type cartState = {
+  cart: string[]
+  count: number
+}
+
+export type countState ={
+
+}
+
+
+export type ProductState = {
+  products: ProductType[]
+  productId: string[]
+}
+
+export type RootState = {
+  productReducer: ProductState
+  cartReducer: cartState
+  themeReducer: Themes
 }

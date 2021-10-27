@@ -45,7 +45,7 @@ export const displayError = (error: any) => {
     payload: error,
   }
 }
-export const insertCart = (products: ProductType) => {
+export const insertCart = (products: string) => {
   return {
     type: 'INSERT_PRODUCTS',
     payload: products,
@@ -58,6 +58,17 @@ export const removeCart = (products_id: string) => {
     payload: products_id,
   }
 }
+export const incrementCount = () => {
+  return {
+    type: "INCREMENT_CART_COUNT",
+  };
+};
+export const decrementCount = () => {
+  return {
+    type: "DECREMENT_CART_COUNT",
+  };
+};
+
 export const lightTheme = () => {
   return {
     type: 'CHANGE_TO_LIGHT',
@@ -68,6 +79,8 @@ export const darkTheme = () => {
     type: 'CHANGE_TO_DARK',
   }
 }
+type IncreMentCount ={type: "INCREMENT_CART_COUNT"}
+type DecreMentCount ={type: "DECREMENT_CART_COUNT"}
 type ThemeLight = { type: 'CHANGE_TO_LIGHT' }
 type ThemeDark = { type: 'CHANGE_TO_DARK' }
 type DisplayError = {
@@ -99,3 +112,5 @@ export type AllActions =
   | InsertCart
   | ThemeLight
   | ThemeDark
+  |IncreMentCount
+  |DecreMentCount

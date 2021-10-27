@@ -1,10 +1,11 @@
 import { AllActions } from '../../actions'
+import {Themes} from '../../types'
 
 const initState = {
   theme: 'light',
 }
 
-const themeReducer = (state = initState, action: AllActions) => {
+const themeReducer = (state:Themes  = initState, action: AllActions) => {
   //  const theme = this.state.theme ? this.state.theme : "CHANGE_TO_Dark";
 
   switch (action.type) {

@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Product from './Product'
 import { ProductType } from '../redux/types'
+import { Dispatch } from 'redux'
 
 import axios from 'axios'
 const Container = styled.div`
@@ -13,9 +14,10 @@ const Container = styled.div`
 
 
 const ProductsHome = () => {
+
+
+
   const [product, setProduct] = useState<ProductType[]>([])
-
-
   const getAllProducts = async () => {
     const products = await axios.get<ProductType[]>('/products')
     setProduct(products.data)

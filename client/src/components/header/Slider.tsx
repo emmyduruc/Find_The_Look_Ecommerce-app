@@ -5,9 +5,45 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { SliderItems } from '../../SliderItems'
 import { mobile } from '../pages/Responsive'
-import { lightTheme, darkTheme } from '../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { lightTheme, darkTheme, insertCart } from '../redux/actions'
+
 import { Carousel, DropdownButton, Dropdown } from 'react-bootstrap'
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  Badge,
+} from '@material-ui/core'
+import { ProductType, RootState } from '../redux/types'
+
+const useStyles = makeStyles((theme) => ({
+  cover: {
+    backgroundColor: '#42684f',
+    marginTop: '0em',
+  },
+
+  formControl: {
+    minWidth: 100,
+    marginLeft: '100px',
+  },
+  inputlabel: {
+    color: '#dad423',
+  },
+  label: {
+    alignItems: 'center',
+    borderRadius: '2rem',
+    paddingRight: '2rem',
+    paddingLeft: '2rem',
+    paddingTop: '1em',
+    paddingBottom: '1rem',
+    fontSize: '1rem',
+  },
+  themeChanger: {
+    background: 'dark' ? 'black' : 'white',
+  },
+}))
 
 const CarouselContainer = styled.div`
   width: 100%;
@@ -65,24 +101,23 @@ const CarouselButton = styled.button`
 // const props = { direction, slideIndex }
 
 const Slider = () => {
-  const dispatch = useDispatch()
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  })
+  const classes = useStyles()
+  // const dispatch = useDispatch()
+  // const [darkMode, setDarkMode] = useState(false)
+  // // setTheme(theme)
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked })
-  }
-  // const theme = useSelector((state) => {
-  //   return state.themeReducer.theme;
-  // });
+  // //
+  // const theme = useSelector((state: RootState) => {
+  //   return state.themeReducer.theme
+  // })
+
   // const dark = () => {
-  //   dispatch(darkTheme());
-  // };
+  //   dispatch(darkTheme())
+  // }
+
   // const light = () => {
-  //   dispatch(lightTheme());
-  // };
+  //   dispatch(lightTheme())
+  // }
 
   return (
     <div>
@@ -150,11 +185,13 @@ const Slider = () => {
           <Dropdown.Item eventKey="3">Top</Dropdown.Item>
           <Dropdown.Item eventKey="4">Belts</Dropdown.Item>
         </DropdownButton>
+
         <Switch
-          checked={state.checkedA}
-          onChange={handleChange}
-          name="checkedA"
-          inputProps={{ 'aria-label': 'secondary checkbox' }}
+          // defaultChecked={darkMode}
+          // // value={theme}
+          // onChange={() => setDarkMode(!dark)}
+          color="default"
+          inputProps={{ 'aria-label': 'checkbox with default color' }}
         />
       </DropDownContainers>
     </div>

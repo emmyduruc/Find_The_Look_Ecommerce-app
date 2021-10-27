@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import cartReducer from './reducers/cart/cartReducer'
 import productReducer from './reducers/products/productReducer'
 import themeReducer from './reducers/themes/themeReducer'
+import { RootState } from './types'
 
 
 const rootReducers = combineReducers( {productReducer,cartReducer,themeReducer } )

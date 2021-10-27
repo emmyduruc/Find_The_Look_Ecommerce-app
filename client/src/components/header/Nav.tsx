@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
 import { Badge } from '@material-ui/core'
 import { Search, ShoppingCartOutlined } from '@material-ui/icons'
 import styled from 'styled-components'
 import { mobile } from '../pages/Responsive'
+import { insertCart } from '../redux/actions'
+import { RootState } from '../redux/types'
 
 const Container = styled.div`
   height: 60px;
@@ -80,6 +82,12 @@ const NeedHelp = styled.div`
 `
 
 const Navbar = () => {
+
+  const CartCounter = useSelector((state:RootState) => {
+    return state.cartReducer.cart
+  });
+  
+
   return (
     <Container>
       <Wrapper>
@@ -108,7 +116,7 @@ const Navbar = () => {
           </Link>
           <MenuItem>
             <Link to={'/cart'}>
-              <Badge badgeContent={4} color="primary">
+              <Badge badgeContent={CartCounter.length} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
             </Link>
