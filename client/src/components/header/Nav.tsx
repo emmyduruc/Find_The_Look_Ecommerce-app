@@ -135,7 +135,7 @@ const Navbar = () => {
                 badgeContent={CartCounter.length}
                 style={{ color: 'white' }}
               >
-                <ShoppingCartOutlined style={{ color: 'red' }} />
+                <ShoppingCartOutlined   style={{ color: 'red' }}/>
               </Badge>
             </Link>
           </MenuItem>

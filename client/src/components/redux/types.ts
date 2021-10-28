@@ -28,6 +28,7 @@ export type cartState = {
 export type ProductState = {
   products: ProductType[]
   productId: string[]
+  error: null
 }
 
 export type RootState = {

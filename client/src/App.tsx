@@ -17,9 +17,14 @@ import { Shop } from '@material-ui/icons'
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './components/redux/types'
+import HooksProduct from './components/hooks/HooksProduct'
 
 function App() {
-  // const [darkMode, setDarkMode] = useState(false)
+
+  const [error, renderProducts] = HooksProduct();
+  const [userInput, setUserInput] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
   const theme = useSelector((state: RootState) => {
     return state.themeReducer.theme
   })

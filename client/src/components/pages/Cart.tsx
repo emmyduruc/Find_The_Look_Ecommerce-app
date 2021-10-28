@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 import { RootState } from '../redux/types'
 import { useSelector } from 'react-redux'
 
-const Container = styled.div``
+const Container = styled.div`
+`
 
 const Wrapper = styled.div`
   padding: 20px;
