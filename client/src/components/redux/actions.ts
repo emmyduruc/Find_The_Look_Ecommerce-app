@@ -2,6 +2,7 @@ import axios from 'axios'
 import { ProductType } from './types'
 import { Error } from './types'
 import { Dispatch } from 'redux'
+import { type } from 'os'
 
 export const fetchProducts = () => {
   return async (dispatch: Dispatch, getState: any) => {
@@ -58,6 +59,18 @@ export const removeCart = (products_id: string) => {
     payload: products_id,
   }
 }
+export const InsertFavourite = (productsId: string) => {
+  return { 
+    type: 'INSERT_FAVOURITE',
+  payload: productsId,
+  }
+}
+export const removeFavourite = (productsId: string) => {
+  return { 
+    type: 'REMOVE_FAVOURITE',
+  payload: productsId,
+  }
+}
 export const incrementCount = () => {
   return {
     type: "INCREMENT_CART_COUNT",
@@ -68,17 +81,35 @@ export const decrementCount = () => {
     type: "DECREMENT_CART_COUNT",
   };
 };
-
-export const lightTheme = () => {
+export const openDrawer = () => {
   return {
-    type: 'CHANGE_TO_LIGHT',
+    type: "OPEN_DRAWER",
+  };
+};
+export const closeDrawer = () => {
+  return {
+    type: "CLOSE_DRAWER",
+  };
+};
+
+export const toggleTheme = () => {
+  return {
+    type: 'TOGGLETHEME',
   }
 }
+// export const darkTheme = () => {
+//   return {
+//     type: 'CHANGE_TO_DARK',
+//   }
+// }
 export const darkTheme = () => {
   return {
     type: 'CHANGE_TO_DARK',
   }
 }
+type OpenDrawer = {type: "OPEN_DRAWER"}
+type CloseDrawer = {type: "CLOSE_DRAWER"}
+type ToggleTheme = {type: "TOGGLETHEME",}
 type IncreMentCount ={type: "INCREMENT_CART_COUNT"}
 type DecreMentCount ={type: "DECREMENT_CART_COUNT"}
 type ThemeLight = { type: 'CHANGE_TO_LIGHT' }
@@ -103,6 +134,14 @@ type InsertCart = {
   type: 'INSERT_PRODUCTS'
   payload: ProductType
 }
+type InsertFavourite = {
+  type: 'INSERT_FAVOURITE',
+  payload: string
+}
+type RemoveFavourite = {
+  type: 'REMOVE_FAVOURITE',
+  payload: string
+}
 
 export type AllActions =
   | DisplayError
@@ -114,3 +153,8 @@ export type AllActions =
   | ThemeDark
   |IncreMentCount
   |DecreMentCount
+  |ToggleTheme
+  |InsertFavourite
+  |RemoveFavourite
+  |CloseDrawer
+  |OpenDrawer

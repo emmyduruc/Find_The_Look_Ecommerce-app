@@ -14,20 +14,16 @@ export type ProductType = {
 export type Error = {
   error: string
 }
-
-export type Themes = {
-  theme: string
+export type IsDark = {
+  theme: boolean
 }
 
 export type cartState = {
   cart: ProductType[]
   count: number
+  favourites: string[]
+  openCartDrawer: boolean
 }
-
-export type countState ={
-
-}
-
 
 export type ProductState = {
   products: ProductType[]
@@ -37,5 +33,5 @@ export type ProductState = {
 export type RootState = {
   productReducer: ProductState
   cartReducer: cartState
-  themeReducer: Themes
+  themeReducer: IsDark
 }

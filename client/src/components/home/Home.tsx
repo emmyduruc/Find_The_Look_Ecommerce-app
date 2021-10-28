@@ -8,6 +8,9 @@ import Products from '../pages/ProductList'
 import Newsletter from '../pages/Newsletter'
 import Footer from '../footer/Footer'
 import ProductsHome from './ProductsHome'
+import Partners from '../pages/Partners'
+
+
 
 const Home = () => {
   return (
@@ -18,6 +21,8 @@ const Home = () => {
       <Category />
       <ProductsHome />
       <NewArrivals />
+      <ProductsHome />
+      <Partners />
       <Newsletter />
       <Footer />
     </div>

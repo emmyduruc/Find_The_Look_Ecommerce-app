@@ -11,7 +11,7 @@ import NeedHelp from './components/pages/NeedHelp'
 import ShoppingStore from './components/pages/Shop'
 import ProductList from './components/pages/ProductList'
 import Cart from './components/pages/Cart'
-import {useState} from 'react'
+import { useState } from 'react'
 import CheckOut from './components/pages/CheckOut'
 import { Shop } from '@material-ui/icons'
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
@@ -19,30 +19,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './components/redux/types'
 
 function App() {
- const [darkMode, setDarkMode] = useState(false)
-  // const theme = useSelector((state: RootState) => {
-  //   return state.themeReducer.theme
-  // })
-  const theme = createTheme({
+  // const [darkMode, setDarkMode] = useState(false)
+  const theme = useSelector((state: RootState) => {
+    return state.themeReducer.theme
+  })
+  const customDarkTheme = createTheme({
     palette: {
-      type: darkMode ? 'dark': 'light',
+      type: 'dark',
     },
   })
-  // const customLightTheme = createTheme({
-  //   palette: {
-  //     type: 'light',
-  //   },
-  // })
+  const customLightTheme = createTheme({
+    palette: {
+      type: 'light',
+    },
+  })
   return (
     <ThemeProvider
-    theme={theme}
-      // theme={theme === 'dark' ? customDarkTheme : customLightTheme}
+      theme={theme ? customDarkTheme : customLightTheme}
     >
       <div>
         <Router>
           <Switch>
             <Route exact path="/">
-              <Home/>
+              <Home />
             </Route>
             <Route exact path="/signUp">
               <SignupPage />

@@ -15,8 +15,6 @@ const Container = styled.div`
 
 const ProductsHome = () => {
 
-
-
   const [product, setProduct] = useState<ProductType[]>([])
   const getAllProducts = async () => {
     const products = await axios.get<ProductType[]>('/products')

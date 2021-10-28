@@ -1,3 +1,4 @@
+import React, {useState, useEffect } from 'react'
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
@@ -5,6 +6,12 @@ import {
 } from '@material-ui/icons'
 import styled from 'styled-components'
 import FlashOnIcon from '@material-ui/icons/FlashOn'
+import { useDispatch, useSelector } from 'react-redux'
+import { productList } from '../redux/actions'
+import { ProductType } from '../redux/types'
+
+import axios from 'axios'
+import { mobile } from './Responsive'
 
 // products
 const Info = styled.div`
@@ -18,11 +25,22 @@ const Info = styled.div`
   z-index: 3;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   transition: all 0.5s ease;
   cursor: pointer;
 `
-
+const Button = styled.button`
+  flex: 1;
+  border: none;
+  background-color: 'fff';
+  color: black;
+  display: none;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: #07beb8;
+    color: white;
+  }
+`
 const Container = styled.div`
   flex: 1;
   margin: 5px;
@@ -55,6 +73,16 @@ const Image = styled.img`
   height: 75%;
   z-index: 2;
 `
+const Deals = styled.div`
+display: flex;
+ flex-direction: column,
+ align-items: center;
+ &:hover ${Button}{
+  display: flex;
+  align-items: center;
+}
+${mobile({ display: 'none' })};
+`
 
 const Icon = styled.div`
   width: 40px;
@@ -73,6 +101,7 @@ const Icon = styled.div`
 `
 
 const NewArrivals = () => {
+
   return (
     <div>
       <Header>
@@ -81,22 +110,54 @@ const NewArrivals = () => {
       </Header>
 
       <Container>
-        
         <Circle />
         <Image
           src="https://images.unsplash.com/photo-1611042553365-9b101441c135?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9kZWwlMjBnaXJsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
           alt="item.img"
         />
         <Info>
-          <Icon>
+        <Deals >
+        <Image style={{width: '200px', height: ''}}
+          src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="item.img"
+        />
+        <Button>To Shop</Button>
+        </Deals>
+       <Deals>
+        <Image style={{width: '200px', height: ''}}
+          src="https://i.etsystatic.com/19534392/r/il/82cb9c/3410304298/il_794xN.3410304298_gqzs.jpg"
+          alt="item.img"
+        />
+        <Button>To Shop</Button>
+        </Deals>
+           <Image
+          src="https://images.unsplash.com/photo-1611042553365-9b101441c135?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9kZWwlMjBnaXJsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+          alt="item.img"
+        />
+          <Deals>
+        <Image style={{width: '200px', height: ''}}
+          src="https://i.etsystatic.com/18385470/r/il/0c9827/3082589943/il_794xN.3082589943_g978.jpg"
+          alt="item.img"
+        />
+        <Button>To Shop</Button>
+        </Deals>
+        <Deals >
+        <Image style={{width: '200px', height: ''}}
+          src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
+          alt="item.img"
+        />
+        <Button>To Shop</Button>
+        </Deals>
+          {/* <Icon>
             <ShoppingCartOutlined />
           </Icon>
+         
           <Icon>
             <SearchOutlined />
           </Icon>
           <Icon>
             <FavoriteBorderOutlined />
-          </Icon>
+          </Icon> */}
         </Info>
       </Container>
     </div>

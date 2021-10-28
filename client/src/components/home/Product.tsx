@@ -7,7 +7,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { insertCart } from '../redux/actions'
+import { insertCart, InsertFavourite } from '../redux/actions'
 import { ProductType } from '../redux/types'
 
 const Info = styled.div`
@@ -74,6 +74,7 @@ type ProductProps = { item: ProductType }
 const Product = ({ item }: ProductProps) => {
   const dispatch = useDispatch()
   const products = item
+  const handleInsertFav = () => dispatch(InsertFavourite(products._id))
   const insert = () => dispatch(insertCart(products))
   return (
     <Container>
@@ -88,7 +89,10 @@ const Product = ({ item }: ProductProps) => {
           <SearchOutlined />
         </Icon>
         <Icon>
-          <FavoriteBorderOutlined />
+          <FavoriteBorderOutlined
+            onClick={handleInsertFav}
+            style={{ color: 'red' }}
+          />
         </Icon>
         <Link to={`/productPage/${item._id}`}>
           <Icon>

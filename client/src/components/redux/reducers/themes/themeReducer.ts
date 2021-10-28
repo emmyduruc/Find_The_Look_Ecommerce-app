@@ -1,29 +1,36 @@
 import { AllActions } from '../../actions'
-import {Themes} from '../../types'
+import { IsDark } from '../../types'
 
 const initState = {
-  theme: 'light',
+  theme: false,
 }
 
-const themeReducer = (state:Themes  = initState, action: AllActions) => {
+const themeReducer = (state: IsDark = initState, action: AllActions) => {
   //  const theme = this.state.theme ? this.state.theme : "CHANGE_TO_Dark";
-
-  switch (action.type) {
-    case 'CHANGE_TO_LIGHT':
-      return {
-        ...state,
-        theme: 'light',
-      }
-
-    case 'CHANGE_TO_DARK':
-      return {
-        ...state,
-        theme: 'dark',
-      }
-
-    default:
-      return state
+  if (action.type === 'TOGGLETHEME') {
+    return {
+      ...state,
+      theme: !state.theme,
+    }
   }
+  return state
+
+  // switch (action.type) {
+  //   case 'CHANGE_TO_LIGHT':
+  //     return {
+  //       ...state,
+  //       theme: 'light',
+  //     }
+
+  //   case 'CHANGE_TO_DARK':
+  //     return {
+  //       ...state,
+  //       theme: 'dark',
+  //     }
+
+  //   default:
+  //     return state
+  // }
 }
 
 export default themeReducer

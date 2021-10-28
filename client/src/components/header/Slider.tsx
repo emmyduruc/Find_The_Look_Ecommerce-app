@@ -5,8 +5,8 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { SliderItems } from '../../SliderItems'
 import { mobile } from '../pages/Responsive'
-import { lightTheme, darkTheme, insertCart } from '../redux/actions'
-
+import { darkTheme, insertCart, toggleTheme } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { Carousel, DropdownButton, Dropdown } from 'react-bootstrap'
 import {
   Select,
@@ -102,29 +102,21 @@ const CarouselButton = styled.button`
 
 const Slider = () => {
   const classes = useStyles()
-  // const dispatch = useDispatch()
-  // const [darkMode, setDarkMode] = useState(false)
-  // // setTheme(theme)
-
-  // //
-  // const theme = useSelector((state: RootState) => {
-  //   return state.themeReducer.theme
-  // })
-
-  // const dark = () => {
-  //   dispatch(darkTheme())
-  // }
-
-  // const light = () => {
-  //   dispatch(lightTheme())
-  // }
+  const dispatch = useDispatch()
+  const [darkMode, setDarkMode] = useState(false)
+  const handleTheme = () => {
+    dispatch(toggleTheme())
+  }
+  const theme = useSelector((state: RootState) => {
+    return state.themeReducer.theme
+  })
 
   return (
     <div>
-      <Carousel style={{ height: '700px' }}>
+      <Carousel style={{ height: '700px', }}>
         <Carousel.Item>
           <CarouselContainer>
-            <CarouselImage src="https://i.ibb.co/cXFnLLV/3.png" />
+            <CarouselImage src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F6b%2Faa%2F6baa4c9256f37b69e2e4d0edc185e1d83e3d518c.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]" />
             <CarouselTitleContainer>
               <CarouselTextH2>AUTUMN COLLECTION</CarouselTextH2>
               <CarouselTextH3>
@@ -187,9 +179,9 @@ const Slider = () => {
         </DropdownButton>
 
         <Switch
-          // defaultChecked={darkMode}
-          // // value={theme}
-          // onChange={() => setDarkMode(!dark)}
+          defaultChecked
+          // value={theme}
+          onChange={handleTheme}
           color="default"
           inputProps={{ 'aria-label': 'checkbox with default color' }}
         />
@@ -199,3 +191,5 @@ const Slider = () => {
 }
 
 export default Slider
+
+// src="https://i.ibb.co/cXFnLLV/3.png"
