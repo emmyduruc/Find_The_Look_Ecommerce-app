@@ -4,12 +4,15 @@ import Announcement from '../header/Announcement'
 import Footer from '../footer/Footer'
 import Navbar from '../header/Nav'
 import { mobile } from '../pages/Responsive'
-import { Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { RootState } from '../redux/types'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { incrementCount } from '../redux/actions'
+import { Badge } from '@material-ui/core'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 const Container = styled.div`
-`
+background-color: #fdf5fb;`
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -36,6 +39,7 @@ const TopButton = styled.button`
   background-color: ${(props: any) =>
     props.type === 'filled' ? 'black' : 'transparent'};
   color: ${(props: any) => props.type === 'filled' && 'white'};
+
 `
 
 const TopTexts = styled.div`
@@ -50,6 +54,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+ 
   ${mobile({ flexDirection: 'column' })}
 `
 
@@ -154,93 +159,109 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  &:hover {
+    background-color: transparent;
+    color: black
+  }
 `
 
 const Cart = () => {
-  const cartProducts = useSelector((state:RootState) => {
+  const dispatch = useDispatch()
+  let history = useHistory()
+
+  const isLogin = useSelector((state: RootState) => {
+    return state.cartReducer.isLoggedIn
+  })
+  const cartProducts = useSelector((state: RootState) => {
     return state.cartReducer.cart
-  });
+  })
+  const handleClick = () => {
+    dispatch(incrementCount())
+  }
+
   console.log('print product', cartProducts)
   return (
     <Container>
       <Announcement />
       <Navbar />
       <Title>YOUR CART</Title>
-        <Top>
-          <Link to={'/shop'}>
-            <TopButton>CONTINUE SHOPPING</TopButton>
-          </Link>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
+      <Top>
+        <Link to={'/shop'}>
+          <TopButton>CONTINUE SHOPPING</TopButton>
+        </Link>
+        <TopTexts>
+          <Badge badgeContent={cartProducts.length} style={{ color: 'red' }}>
+            {/* <FavoriteBorderIcon style={{ color: 'red' }} /> */}
+          <TopText>Shopping Bag</TopText>
+          </Badge>
+          <TopText>Your Wishlist (0)</TopText>
+        </TopTexts>
 
-          <TopButton>CHECKOUT NOW</TopButton>
-        </Top>
-      {cartProducts.map((products) =>{
+        <TopButton>CHECKOUT NOW</TopButton>
+      </Top>
+      {cartProducts.map((products) => {
+        return (
+          <Wrapper>
+            <Bottom>
+              <Info>
+                <Product>
+                  <ProductDetail>
+                    <Image src={products.image} />
 
-      return(
-      <Wrapper>
-       
-        <Bottom>
-          <Info>
-            <Product>
-              <ProductDetail>
-                <Image src= {products.image}/>
-                <p>  {products.description} </p>
-                {/* <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" /> */}
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Yeez Sneaker
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 6453313718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 45</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            
-          </Info>
-          </Bottom>
-      </Wrapper>
-      )})}
-        
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <Link to={'/checkout'}>
-              <Button>CHECKOUT NOW</Button>
-            </Link>
-          </Summary>
-      
+                    {/* <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" /> */}
+                    <Details>
+                      <ProductName>
+                        <b>Product:</b> {products.description}
+                      </ProductName>
+                      <ProductId>
+                        <b>ID:</b> {products._id}
+                      </ProductId>
+                      <ProductColor color="black" />
+                      <ProductSize>
+                        <b>Size:</b> 41
+                      </ProductSize>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add />
+                      <ProductAmount>{cartProducts.length}</ProductAmount>
+                      <Remove />
+                    </ProductAmountContainer>
+                    <ProductPrice>$ 45</ProductPrice>
+                  </PriceDetail>
+                </Product>
+                <Hr />
+              </Info>
+            </Bottom>
+          </Wrapper>
+        )
+      })}
+
+      <Summary>
+        <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+        <SummaryItem>
+          <SummaryItemText>Subtotal</SummaryItemText>
+          <SummaryItemPrice>$ 80</SummaryItemPrice>
+        </SummaryItem>
+        <SummaryItem>
+          <SummaryItemText>Estimated Shipping</SummaryItemText>
+          <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+        </SummaryItem>
+        <SummaryItem>
+          <SummaryItemText>Shipping Discount</SummaryItemText>
+          <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+        </SummaryItem>
+        <SummaryItem>
+          <SummaryItemText>Total</SummaryItemText>
+          <SummaryItemPrice>$ 80</SummaryItemPrice>
+        </SummaryItem>
+        <Link to={'/checkout'}>
+          {/* onClick = {isLogin? history.push('/signup'):history.push('/cart')} */}
+          <Button>CHECKOUT NOW</Button>
+        </Link>
+      </Summary>
+
       <Footer />
     </Container>
   )

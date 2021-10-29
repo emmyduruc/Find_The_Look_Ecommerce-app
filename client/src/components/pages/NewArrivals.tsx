@@ -37,7 +37,7 @@ const Button = styled.button`
   display: none;
   transition: all 0.5s ease;
   &:hover {
-    background-color: #07beb8;
+    background-color: red;
     color: white;
   }
 `

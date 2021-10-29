@@ -8,7 +8,7 @@ export const fetchProducts = () => {
   return async (dispatch: Dispatch, getState: any) => {
     try {
       const products = await axios.get<ProductType[]>('/products')
-      console.log("products from axios", products)
+      console.log('products from axios', products)
       dispatch(productList(products.data))
     } catch (error) {
       dispatch(displayError(error))
@@ -92,6 +92,11 @@ export const closeDrawer = () => {
     type: 'CLOSE_DRAWER',
   }
 }
+export const isLogin = () => {
+  return {
+    type: 'IS_LOGIN',
+  }
+}
 
 export const toggleTheme = () => {
   return {
@@ -108,6 +113,7 @@ export const darkTheme = () => {
     type: 'CHANGE_TO_DARK',
   }
 }
+type IS_LOGIN = { type: 'IS_LOGIN' }
 type OpenDrawer = { type: 'OPEN_DRAWER' }
 type CloseDrawer = { type: 'CLOSE_DRAWER' }
 type ToggleTheme = { type: 'TOGGLETHEME' }
@@ -159,3 +165,4 @@ export type AllActions =
   | RemoveFavourite
   | CloseDrawer
   | OpenDrawer
+  | IS_LOGIN

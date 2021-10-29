@@ -6,13 +6,16 @@ const initState = {
   count: 0,
   favourites: [],
   openCartDrawer: false,
+  isLoggedIn: false,
 }
 
 const cartReducer = (state: cartState = initState, action: AllActions) => {
   switch (action.type) {
     case 'INSERT_PRODUCTS': {
       const incomingProducts = action.payload
-      const existProduct = state.cart.find(item=>item._id === incomingProducts._id)
+      const existProduct = state.cart.find(
+        (item) => item._id === incomingProducts._id
+      )
       if (existProduct) {
         return state
       } else {
@@ -34,7 +37,9 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
     }
     case 'INSERT_FAVOURITE': {
       const incomingProducts = action.payload
-      const existProduct = state.cart.find(item=>item._id === incomingProducts)
+      const existProduct = state.cart.find(
+        (item) => item._id === incomingProducts
+      )
       if (existProduct) {
         return state
       } else {
@@ -66,20 +71,26 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
         count: state.count - 1,
       }
     }
-    case "OPEN_DRAWER":
+    case 'OPEN_DRAWER':
       return {
         ...state,
         openCartDrawer: true,
-      };
-    case "CLOSE_DRAWER":
+      }
+    case 'CLOSE_DRAWER':
       return {
         ...state,
         openCartDrawer: false,
-      };
+      }
+    case 'IS_LOGIN':
+      return {
+        ...state,
+        isLoggedIn: false,
+      }
     default:
       return state
   }
 }
+
 export default cartReducer
 
 //   const removeProducts = state.cart.filter((productId) => {

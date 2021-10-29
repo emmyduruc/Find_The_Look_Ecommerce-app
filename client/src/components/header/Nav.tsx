@@ -8,12 +8,12 @@ import styled from 'styled-components'
 import { mobile } from '../pages/Responsive'
 import { insertCart } from '../redux/actions'
 import { RootState } from '../redux/types'
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import FavouriteDrawer from '../pages/favouriteDrawer'
 
 const Container = styled.div`
   height: 60px;
-  background-color: #88a096;
+  background-color: #cb9173;
   ${mobile({ height: '50px', width: '100%' })}
 `
 
@@ -90,20 +90,20 @@ const NeedHelp = styled.div`
 
 const Navbar = () => {
   const [showFav, setShowFav] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
-const openFavDrawer = () => {
-  setShowFav (prev => !prev)
-}
+  const openFavDrawer = () => {
+    setShowFav((prev) => !prev)
+  }
   const CartCounter = useSelector((state: RootState) => {
     return state.cartReducer.cart
   })
   const favouriteCounter = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
- 
+
   return (
     <Container>
-      <FavouriteDrawer showFav = {showFav} setShowFav = {setShowFav}/>
       <Wrapper>
         <Left>
           <Language>EN</Language>
@@ -126,15 +126,16 @@ const openFavDrawer = () => {
             <MenuItem>SIGN UP</MenuItem>
           </Link>
 
-          <Link to={'/login'}>{<MenuItem>SIGN IN</MenuItem>}</Link>
+          <Link to={'/login'}>{<NeedHelp>SIGN IN</NeedHelp>}</Link>
           <MenuItem>
-            <p>wishlist</p>
+            <FavouriteDrawer open={open} setOpen={setOpen} />
+            {/* <p>wishlist</p>
             <Badge
               badgeContent={favouriteCounter.length}
               style={{ color: 'white' }}
             >
               <FavoriteBorderIcon onClick={openFavDrawer} style={{ color: 'red' }} />
-            </Badge>
+            </Badge> */}
           </MenuItem>
           <MenuItem>
             <p>cart</p>
@@ -143,7 +144,7 @@ const openFavDrawer = () => {
                 badgeContent={CartCounter.length}
                 style={{ color: 'white' }}
               >
-                <ShoppingCartOutlined   style={{ color: 'red' }}/>
+                <ShoppingCartOutlined style={{ color: 'red' }} />
               </Badge>
             </Link>
           </MenuItem>

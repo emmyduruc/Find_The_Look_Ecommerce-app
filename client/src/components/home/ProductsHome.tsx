@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import Product from './Product'
 import { ProductType } from '../redux/types'
 import { Dispatch } from 'redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
+import HooksProduct from '../hooks/HooksProduct'
+import { fetchProducts } from '../redux/actions'
 const Container = styled.div`
   padding: 20px;
   display: flex;
@@ -14,12 +17,17 @@ const Container = styled.div`
 
 
 const ProductsHome = () => {
-
+  // const [error, renderProducts] = HooksProduct()
+  // console.log('asjdkldkadjc', renderProducts)
+  // const dispatch = useDispatch()
+  
+  // useEffect(() => {
+  //   dispatch(fetchProducts())
+  // }, [dispatch])
   const [product, setProduct] = useState<ProductType[]>([])
   const getAllProducts = async () => {
     const products = await axios.get<ProductType[]>('/products')
     setProduct(products.data)
-    console.log('products', products)
   }
   useEffect(() => {
     getAllProducts()

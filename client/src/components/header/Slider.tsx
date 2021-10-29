@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const CarouselContainer = styled.div`
   width: 100%;
   height: 700px;
-  background-color: #fff7f7;
+  background-color: #CB9173;
   display: flex;
 
   align-items: center;
@@ -88,13 +88,13 @@ const CarouselButton = styled.button`
   border: none;
   padding: 10px;
   background-color: white;
-  color: gray;
-  text-decoration: #f00 solid underline;
+  color: black;
+
   cursor: pointer;
   font-weight: 600;
   &:hover {
-    background-color: #88a096;
-    color: white;
+    background-color: #f5fbfd;
+    color: black;
   }
 `
 
@@ -113,7 +113,7 @@ const Slider = () => {
 
   return (
     <div>
-      <Carousel style={{ height: '700px', }}>
+      <Carousel style={{ height: '700px',backgroundColor: '#CB9173' }}>
         <Carousel.Item>
           <CarouselContainer>
             <CarouselImage src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F6b%2Faa%2F6baa4c9256f37b69e2e4d0edc185e1d83e3d518c.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]" />
@@ -166,7 +166,7 @@ const Slider = () => {
           </CarouselContainer>
         </Carousel.Item>
       </Carousel>
-      <DropDownContainers style={{ backgroundColor: '#88a096' }}>
+      <DropDownContainers style={{   backgroundColor: '#8E443D', }}>
         <DropdownButton
           variant="success"
           title="CATEGORIES"

@@ -9,10 +9,33 @@ import Newsletter from '../pages/Newsletter'
 import Footer from '../footer/Footer'
 import ProductsHome from './ProductsHome'
 import Partners from '../pages/Partners'
-
-
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import HooksProduct from '../hooks/HooksProduct'
+import { ProductType } from '../redux/types'
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const [error, renderProducts] = HooksProduct()
+  const [userInput, setUserInput] = useState('')
+  const [searchResult, setSearchResult] = useState()
+
+  useEffect(() => {
+    // setSearchResult();
+  }, [renderProducts]);
+
+  // const onChangeHandler = (event:any) => {
+  //   setUserInput(event.target.value);
+  //   const foundData = renderProducts.filter(
+  //     (product) => product.category[0].toLowerCase() === event.target.value.toLowerCase()
+  //   );
+  //   if (foundData.length === 0) {
+  //     setSearchResult(renderProducts);
+  //   }
+ 
+  //    setSearchResult(foundData);
+  // };
+
   return (
     <div>
       <Announcement />

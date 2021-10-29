@@ -20,7 +20,7 @@ import { mobile } from '../pages/Responsive'
 
 const Container = styled.div`
   display: flex;
-  background-color: #fff7f7;
+  background-color: #8E443D;
   ${mobile({ flexDirection: 'column' })}
 `
 

@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  button:{
+    color: 'white',
+    backgroundColor: 'black'
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -38,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: 'white',
+    backgroundColor: 'black'
   },
   google: {
     display: 'flex',
@@ -64,7 +70,7 @@ const SignupPage = () => {
     localStorage.setItem('token', result.data.token)
     //  const jwtToken = result.data.token
     if (result.status === 200) {
-      history.push('/')
+      // history.push('/')
       //for routing from google signup button to the home page(logged in)
     }
   }
@@ -143,8 +149,8 @@ const SignupPage = () => {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
-              color="primary"
+              // variant="contained"
+              // color="primary"
               className={classes.submit}
             >
               Sign Up

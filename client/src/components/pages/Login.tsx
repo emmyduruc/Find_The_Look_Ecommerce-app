@@ -19,13 +19,12 @@ const BlogButton = styled.button`
   border: none;
   padding: 10px;
   background-color: white;
-  color: gray;
-  text-decoration: #f00 solid underline;
+  color: black;
   cursor: pointer;
   font-weight: 600;
   &:hover {
-    background-color: #88a096;
-    color: white;
+    background-color: #f5fbfd;
+    color: black;
   }
 `
 
@@ -60,6 +59,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: 'white',
+    backgroundColor: 'black'
   },
 }))
 

@@ -23,6 +23,7 @@ export type cartState = {
   count: number
   favourites: string[]
   openCartDrawer: boolean
+  isLoggedIn: boolean
 }
 
 export type ProductState = {

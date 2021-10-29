@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Container = styled.div`
   flex: 1;
 
-   background-color: #fff7f7;
+   background-color: #E0D68A;
   height: 70vh;
   position: relative;
   
@@ -40,13 +40,13 @@ const Button = styled.button`
   border: none;
   padding: 10px;
   background-color: white;
-  color: gray;
+  color: black;
   cursor: pointer;
   font-weight: 600;
-  text-decoration: #f00 solid underline;
+  background-color: #f5fbfd
  
   &:hover {
-    background-color: #88A096;
+    background-color: red;
     color: white;
   }
   ${mobile({ padding: '0px', fontSize: '19px',backgroundColor: 'transparent',cursor: 'pointer'})}

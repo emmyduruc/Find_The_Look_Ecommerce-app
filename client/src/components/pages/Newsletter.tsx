@@ -5,7 +5,7 @@ import { mobile } from './Responsive'
 
 const Container = styled.div`
   height: 40vh;
-  background-color: #bbab8b;
+  background-color: #CB9173;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@ const Button = styled.button`
   background-color: 'fff';
   color: white;
   &:hover {
-    background-color: #07beb8;
+    background-color: red;
     color: white;
   }
 `

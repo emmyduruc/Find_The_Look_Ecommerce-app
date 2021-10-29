@@ -9,6 +9,8 @@ import Footer from '../footer/Footer'
 import Navbar from '../header/Nav'
 import Newsletter from './Newsletter'
 import { mobile } from './Responsive'
+import { useDispatch, useSelector } from 'react-redux'
+import { insertCart } from '../redux/actions'
 
 const Container = styled.div``
 
@@ -120,9 +122,12 @@ const Button = styled.button`
 type Params = {
   productId: string
 }
+
 const ProductList = () => {
+  const dispatch = useDispatch()
   const [products, setProduct] = useState<ProductType | null>(null)
   console.log('products list', products)
+  // const insert = () => dispatch(insertCart(products))
   const { productId } = useParams<Params>()
 
   useEffect(() => {
@@ -148,7 +153,7 @@ const ProductList = () => {
             tristique tortor pretium ut. Curabitur elit justo, consequat id
             condimentum ac, volutpat ornare.
           </Desc>
-          {products &&<Price>{products.price}</Price>}
+          {products && <Price>{products.price}</Price>}
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
@@ -173,7 +178,7 @@ const ProductList = () => {
               <Amount>1</Amount>
               <Add />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button >ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

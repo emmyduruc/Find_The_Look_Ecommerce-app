@@ -21,12 +21,9 @@ import HooksProduct from './components/hooks/HooksProduct'
 import { fetchProducts } from './components/redux/actions'
 
 function App() {
+  
   const dispatch = useDispatch()
-  const [error, renderProducts] = HooksProduct()
-  // console.log('renderProducts',renderProducts)
-  const [userInput, setUserInput] = useState('')
-  const [searchResult, setSearchResult] = useState([])
-
+  
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
