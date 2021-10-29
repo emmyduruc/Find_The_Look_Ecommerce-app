@@ -12,8 +12,10 @@ const HooksProduct = () => {
        const renderProducts = useSelector((state: RootState) =>{
          return state.productReducer.products
        })
+       console.log('renderProducts',renderProducts)
        const getError = useSelector((state: RootState) =>{
          return state.productReducer.error})
+
        useEffect(() => {
          dispatch(productList (renderProducts))
       

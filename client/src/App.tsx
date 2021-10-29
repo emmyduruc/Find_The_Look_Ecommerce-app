@@ -11,19 +11,25 @@ import NeedHelp from './components/pages/NeedHelp'
 import ShoppingStore from './components/pages/Shop'
 import ProductList from './components/pages/ProductList'
 import Cart from './components/pages/Cart'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CheckOut from './components/pages/CheckOut'
 import { Shop } from '@material-ui/icons'
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './components/redux/types'
 import HooksProduct from './components/hooks/HooksProduct'
+import { fetchProducts } from './components/redux/actions'
 
 function App() {
+  const dispatch = useDispatch()
+  const [error, renderProducts] = HooksProduct()
+  // console.log('renderProducts',renderProducts)
+  const [userInput, setUserInput] = useState('')
+  const [searchResult, setSearchResult] = useState([])
 
-  const [error, renderProducts] = HooksProduct();
-  const [userInput, setUserInput] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [dispatch])
 
   const theme = useSelector((state: RootState) => {
     return state.themeReducer.theme
@@ -39,9 +45,7 @@ function App() {
     },
   })
   return (
-    <ThemeProvider
-      theme={theme ? customDarkTheme : customLightTheme}
-    >
+    <ThemeProvider theme={theme ? customDarkTheme : customLightTheme}>
       <div>
         <Router>
           <Switch>

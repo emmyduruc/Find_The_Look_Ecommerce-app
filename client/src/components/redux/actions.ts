@@ -7,14 +7,15 @@ import { type } from 'os'
 export const fetchProducts = () => {
   return async (dispatch: Dispatch, getState: any) => {
     try {
-      const products = await axios.get('/products')
-      console.log('products from axios', products)
-      dispatch(productList(products.data as ProductType[]))
+      const products = await axios.get<ProductType[]>('/products')
+      console.log("products from axios", products)
+      dispatch(productList(products.data))
     } catch (error) {
       dispatch(displayError(error))
     }
   }
 }
+
 export const productList = (productsItems: ProductType[]) => {
   return {
     type: 'PRODUCT_LIST',
@@ -60,37 +61,37 @@ export const removeCart = (products_id: string) => {
   }
 }
 export const InsertFavourite = (productsId: string) => {
-  return { 
+  return {
     type: 'INSERT_FAVOURITE',
-  payload: productsId,
+    payload: productsId,
   }
 }
 export const removeFavourite = (productsId: string) => {
-  return { 
+  return {
     type: 'REMOVE_FAVOURITE',
-  payload: productsId,
+    payload: productsId,
   }
 }
 export const incrementCount = () => {
   return {
-    type: "INCREMENT_CART_COUNT",
-  };
-};
+    type: 'INCREMENT_CART_COUNT',
+  }
+}
 export const decrementCount = () => {
   return {
-    type: "DECREMENT_CART_COUNT",
-  };
-};
+    type: 'DECREMENT_CART_COUNT',
+  }
+}
 export const openDrawer = () => {
   return {
-    type: "OPEN_DRAWER",
-  };
-};
+    type: 'OPEN_DRAWER',
+  }
+}
 export const closeDrawer = () => {
   return {
-    type: "CLOSE_DRAWER",
-  };
-};
+    type: 'CLOSE_DRAWER',
+  }
+}
 
 export const toggleTheme = () => {
   return {
@@ -107,11 +108,11 @@ export const darkTheme = () => {
     type: 'CHANGE_TO_DARK',
   }
 }
-type OpenDrawer = {type: "OPEN_DRAWER"}
-type CloseDrawer = {type: "CLOSE_DRAWER"}
-type ToggleTheme = {type: "TOGGLETHEME",}
-type IncreMentCount ={type: "INCREMENT_CART_COUNT"}
-type DecreMentCount ={type: "DECREMENT_CART_COUNT"}
+type OpenDrawer = { type: 'OPEN_DRAWER' }
+type CloseDrawer = { type: 'CLOSE_DRAWER' }
+type ToggleTheme = { type: 'TOGGLETHEME' }
+type IncreMentCount = { type: 'INCREMENT_CART_COUNT' }
+type DecreMentCount = { type: 'DECREMENT_CART_COUNT' }
 type ThemeLight = { type: 'CHANGE_TO_LIGHT' }
 type ThemeDark = { type: 'CHANGE_TO_DARK' }
 type DisplayError = {
@@ -135,11 +136,11 @@ type InsertCart = {
   payload: ProductType
 }
 type InsertFavourite = {
-  type: 'INSERT_FAVOURITE',
+  type: 'INSERT_FAVOURITE'
   payload: string
 }
 type RemoveFavourite = {
-  type: 'REMOVE_FAVOURITE',
+  type: 'REMOVE_FAVOURITE'
   payload: string
 }
 
@@ -151,10 +152,10 @@ export type AllActions =
   | InsertCart
   | ThemeLight
   | ThemeDark
-  |IncreMentCount
-  |DecreMentCount
-  |ToggleTheme
-  |InsertFavourite
-  |RemoveFavourite
-  |CloseDrawer
-  |OpenDrawer
+  | IncreMentCount
+  | DecreMentCount
+  | ToggleTheme
+  | InsertFavourite
+  | RemoveFavourite
+  | CloseDrawer
+  | OpenDrawer

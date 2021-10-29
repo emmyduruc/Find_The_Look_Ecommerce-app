@@ -8,6 +8,8 @@ import styled from 'styled-components'
 import { mobile } from '../pages/Responsive'
 import { insertCart } from '../redux/actions'
 import { RootState } from '../redux/types'
+import { useState, useEffect} from 'react'
+import FavouriteDrawer from '../pages/favouriteDrawer'
 
 const Container = styled.div`
   height: 60px;
@@ -87,15 +89,21 @@ const NeedHelp = styled.div`
 `
 
 const Navbar = () => {
+  const [showFav, setShowFav] = useState(false)
+
+const openFavDrawer = () => {
+  setShowFav (prev => !prev)
+}
   const CartCounter = useSelector((state: RootState) => {
     return state.cartReducer.cart
   })
   const favouriteCounter = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
-
+ 
   return (
     <Container>
+      <FavouriteDrawer showFav = {showFav} setShowFav = {setShowFav}/>
       <Wrapper>
         <Left>
           <Language>EN</Language>
@@ -125,7 +133,7 @@ const Navbar = () => {
               badgeContent={favouriteCounter.length}
               style={{ color: 'white' }}
             >
-              <FavoriteBorderIcon style={{ color: 'red' }} />
+              <FavoriteBorderIcon onClick={openFavDrawer} style={{ color: 'red' }} />
             </Badge>
           </MenuItem>
           <MenuItem>
