@@ -74,7 +74,7 @@ type ProductProps = { item: ProductType }
 const Product = ({ item }: ProductProps) => {
   const dispatch = useDispatch()
   const products = item
-  const handleInsertFav = () => dispatch(InsertFavourite(products._id))
+  const handleInsertFav = () => dispatch(InsertFavourite(products))
   const insert = () => dispatch(insertCart(products))
   return (
     <Container>

@@ -7,12 +7,13 @@ import { mobile } from '../pages/Responsive'
 import { useHistory, Link } from 'react-router-dom'
 import { RootState } from '../redux/types'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementCount } from '../redux/actions'
+import { incrementCount, removeCart } from '../redux/actions'
 import { Badge } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 const Container = styled.div`
-background-color: #fdf5fb;`
+  background-color: #fdf5fb;
+`
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -39,7 +40,6 @@ const TopButton = styled.button`
   background-color: ${(props: any) =>
     props.type === 'filled' ? 'black' : 'transparent'};
   color: ${(props: any) => props.type === 'filled' && 'white'};
-
 `
 
 const TopTexts = styled.div`
@@ -54,7 +54,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
- 
+
   ${mobile({ flexDirection: 'column' })}
 `
 
@@ -161,7 +161,7 @@ const Button = styled.button`
   font-weight: 600;
   &:hover {
     background-color: transparent;
-    color: black
+    color: black;
   }
 `
 
@@ -175,6 +175,10 @@ const Cart = () => {
   const cartProducts = useSelector((state: RootState) => {
     return state.cartReducer.cart
   })
+  const itemId = cartProducts.map((item) => item._id)
+  const remove = () => {
+    dispatch(removeCart(itemId))
+  }
   const handleClick = () => {
     dispatch(incrementCount())
   }
@@ -191,8 +195,7 @@ const Cart = () => {
         </Link>
         <TopTexts>
           <Badge badgeContent={cartProducts.length} style={{ color: 'red' }}>
-            {/* <FavoriteBorderIcon style={{ color: 'red' }} /> */}
-          <TopText>Shopping Bag</TopText>
+            <TopText>Shopping Bag</TopText>
           </Badge>
           <TopText>Your Wishlist (0)</TopText>
         </TopTexts>
@@ -229,6 +232,7 @@ const Cart = () => {
                       <Remove />
                     </ProductAmountContainer>
                     <ProductPrice>$ 45</ProductPrice>
+                    <TopButton onClick={remove}>Remove</TopButton>
                   </PriceDetail>
                 </Product>
                 <Hr />

@@ -10,7 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
-import { RootState } from '../redux/types'
+import { ProductType, RootState } from '../redux/types'
 import styled from 'styled-components'
 import { mobile } from './Responsive'
 import { decrementCount, removeFavourite } from '../redux/actions'
@@ -26,31 +26,32 @@ const MenuItem = styled.div`
   justify-content: space-between;
   ${mobile({ fontSize: '10px', marginLeft: '10px' })}
 `
-const ModalWrapper = styled.div`
-  width: 600px;
+const Wrapper = styled.div`
+  width: 700px;
   height: 400px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
   display: flex;
-
-  grid-template-columns: 1fr 1fr;
+  flex-direction: row;
   position: relative;
   z-index: 10;
+  margin-bottom: 1rem;
   border-radius: 10px;
 `
-
-const ModalImg = styled.img`
-  width: 300px;
-  height: 400px;
-  border-radius: 10px 0 0 10px;
-  background: #000;
-`
-
-const ModalContent = styled.div`
+const Header = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  line-height: 1.8;
+  color: #141414;
+`
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   line-height: 1.8;
   color: #141414;
@@ -64,25 +65,55 @@ const ModalContent = styled.div`
     border: none;
   }
 `
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  z-index: 10;
+const Descriptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.8;
+  padding: 1.5rem;
+  color: #141414;
 `
+const ProductName = styled.span``
+
+const ProductId = styled.span``
+
+const ProductColor = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+`
+
+const ProductSize = styled.span``
+const Image = styled.img`
+  width: 300px;
+  height: 400px;
+  border-radius: 10px 0 0 10px;
+  background: #000;
+`
+const TopButton = styled.button`
+  padding: 10px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: ${(props: any) => props.type === 'filled' && 'none'};
+  background-color: ${(props: any) =>
+    props.type === 'filled' ? 'black' : 'transparent'};
+  color: ${(props: any) => props.type === 'filled' && 'white'};
+`
+
 function FavouriteDrawer({ open, setOpen, productId }: any) {
   const dispatch = useDispatch()
+
   // const [open, setOpen] = React.useState(false);
   const favouriteCounter = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
+  const itemId = favouriteCounter.map((item) => item._id)
+
   const remove = () => {
-    dispatch(removeFavourite(productId))
-    dispatch(decrementCount())
+    dispatch(removeFavourite(itemId))
   }
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -97,9 +128,6 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open responsive dialog
-      </Button> */}
       <MenuItem>
         <p>wishlist</p>
         <Badge
@@ -118,22 +146,48 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-       
-        {/* <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions> */}
+        <Header>
+          <h3 style={{ textAlign: 'center' }}>YOUR WISHLIST</h3>
+          <Badge
+            badgeContent={favouriteCounter.length}
+            style={{ color: 'red' }}
+          >
+            <FavoriteBorderIcon style={{ color: 'red', fontSize: '2rem' }} />
+          </Badge>
+        </Header>
+        {favouriteCounter.map((productItems) => {
+          return (
+            <div>
+              <Wrapper>
+                <Content>
+                  <Image src={productItems.image} />
+                  <Descriptions>
+                    <ProductName>
+                      <b>Product:</b> {productItems.description}
+                    </ProductName>
+                    <ProductName>
+                      <b>Price:</b> {productItems.price}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b> {productItems._id}
+                    </ProductId>
+                    <ProductColor color="black" />
+                    <ProductSize>
+                      <b>Size:</b> 41
+                    </ProductSize>
+                    <TopButton onClick={remove}>Remove</TopButton>
+                    <TopButton>Add to Cart</TopButton>
+                  </Descriptions>
+                </Content>
+              </Wrapper>
+            </div>
+          )
+        })}
         <Button autoFocus onClick={handleClose} color="primary">
           Disagree
         </Button>
         <Button onClick={handleClose} color="primary" autoFocus>
-          Agree
+          Close Drawer
         </Button>
         {/* </DialogActions> */}
       </Dialog>

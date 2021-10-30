@@ -38,7 +38,7 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
     case 'INSERT_FAVOURITE': {
       const incomingProducts = action.payload
       const existProduct = state.cart.find(
-        (item) => item._id === incomingProducts
+        (item) => item._id === incomingProducts._id
       )
       if (existProduct) {
         return state
@@ -56,7 +56,7 @@ const cartReducer = (state: cartState = initState, action: AllActions) => {
       )
       return {
         ...state,
-        favourites: remainProduct,
+        favourites: [...remainProduct],
       }
     }
     case 'INCREMENT_CART_COUNT': {

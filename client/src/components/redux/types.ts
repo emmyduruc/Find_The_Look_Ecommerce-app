@@ -21,7 +21,7 @@ export type IsDark = {
 export type cartState = {
   cart: ProductType[]
   count: number
-  favourites: string[]
+  favourites: ProductType[]
   openCartDrawer: boolean
   isLoggedIn: boolean
 }
