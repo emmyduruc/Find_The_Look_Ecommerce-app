@@ -125,10 +125,12 @@ type Params = {
 
 const ProductList = () => {
   const dispatch = useDispatch()
-  const [products, setProduct] = useState<ProductType | null>(null)
+
+  const [products, setProduct] = useState<ProductType | null>()
   console.log('products list', products)
-  // const insert = () => dispatch(insertCart(products))
   const { productId } = useParams<Params>()
+
+   const insert = (products: ProductType) => dispatch(insertCart(products))
 
   useEffect(() => {
     axios
@@ -178,7 +180,8 @@ const ProductList = () => {
               <Amount>1</Amount>
               <Add />
             </AmountContainer>
-            <Button >ADD TO CART</Button>
+            <Button>ADD TO CART</Button>
+            {/* <Button onClick={()=>insert(products)}>ADD TO CART</Button> */}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

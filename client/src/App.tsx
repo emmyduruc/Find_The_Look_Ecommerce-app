@@ -17,13 +17,13 @@ import { Shop } from '@material-ui/icons'
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './components/redux/types'
-import HooksProduct from './components/hooks/HooksProduct'
+import HooksProduct from './components/hooks/useHooksProduct'
 import { fetchProducts } from './components/redux/actions'
 
 function App() {
   
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])

@@ -50,7 +50,7 @@ const Shop = () => {
     <Container>
       <Announcement /> 
        <Nav />
-      <Title>Dresses</Title>
+      <Title>Our Stock</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>

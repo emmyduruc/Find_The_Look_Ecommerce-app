@@ -110,10 +110,9 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
   const favouriteCounter = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
-  const itemId = favouriteCounter.map((item) => item._id)
 
-  const remove = () => {
-    dispatch(removeFavourite(itemId))
+  const remove = (productId: string) => {
+    dispatch(removeFavourite(productId))
   }
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -175,7 +174,7 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
                     <ProductSize>
                       <b>Size:</b> 41
                     </ProductSize>
-                    <TopButton onClick={remove}>Remove</TopButton>
+                    <TopButton onClick={()=>remove(productItems._id)}>Remove</TopButton>
                     <TopButton>Add to Cart</TopButton>
                   </Descriptions>
                 </Content>
@@ -183,9 +182,9 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
             </div>
           )
         })}
-        <Button autoFocus onClick={handleClose} color="primary">
+        {/* <Button autoFocus onClick={handleClose} color="primary">
           Disagree
-        </Button>
+        </Button> */}
         <Button onClick={handleClose} color="primary" autoFocus>
           Close Drawer
         </Button>

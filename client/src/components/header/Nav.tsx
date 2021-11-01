@@ -111,7 +111,9 @@ const Navbar = () => {
             <Input placeholder="Search" />
             <Search style={{ color: 'gray', fontSize: 16 }} />
           </SearchContainer>
-          <NeedHelp>THEME FAQ'S</NeedHelp>
+          <Link to={'/contact'}>
+            <NeedHelp>NEED HELP?</NeedHelp>
+          </Link>
         </Left>
         <Link to={'/'}>
           <Center>
@@ -119,9 +121,7 @@ const Navbar = () => {
           </Center>
         </Link>
         <Right>
-          <Link to={'/contact'}>
-            <NeedHelp>NEED HELP?</NeedHelp>
-          </Link>
+          
           <Link to={'/signUp'}>
             <MenuItem>SIGN UP</MenuItem>
           </Link>

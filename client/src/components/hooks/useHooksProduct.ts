@@ -7,7 +7,7 @@ import { productList } from '../redux/actions';
 
 // type ProductProps = { productsItems: ProductType }
 
-const HooksProduct = () => {
+const useHooksProduct = ():[null, ProductType[]] => {
        const dispatch = useDispatch()
        const renderProducts = useSelector((state: RootState) =>{
          return state.productReducer.products
@@ -23,4 +23,4 @@ const HooksProduct = () => {
        return [getError, renderProducts];
 }
 
-export default HooksProduct
+export default useHooksProduct

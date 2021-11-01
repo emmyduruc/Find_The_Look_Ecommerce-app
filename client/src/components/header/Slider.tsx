@@ -3,6 +3,7 @@ import Switch from '@material-ui/core/Switch'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { SliderItems } from '../../SliderItems'
 import { mobile } from '../pages/Responsive'
 import { darkTheme, insertCart, toggleTheme } from '../redux/actions'
@@ -103,7 +104,6 @@ const CarouselButton = styled.button`
 const Slider = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const [darkMode, setDarkMode] = useState(false)
   const handleTheme = () => {
     dispatch(toggleTheme())
   }
@@ -127,7 +127,9 @@ const Slider = () => {
                 tenetur veniam atque minima a repellat eligendi, cum
                 consequuntur ad tenetur
               </CarouselTextP>
+              <Link to={'/shop'}>
               <CarouselButton>TO SHOP</CarouselButton>
+              </Link>
             </CarouselTitleContainer>
           </CarouselContainer>
         </Carousel.Item>

@@ -175,9 +175,13 @@ const Cart = () => {
   const cartProducts = useSelector((state: RootState) => {
     return state.cartReducer.cart
   })
-  const itemId = cartProducts.map((item) => item._id)
-  const remove = () => {
-    dispatch(removeCart(itemId))
+  const favProducts = useSelector((state: RootState) => {
+    return state.cartReducer.favourites
+  })
+  
+  
+  const remove = (productId: string) => {
+    dispatch(removeCart(productId))
   }
   const handleClick = () => {
     dispatch(incrementCount())
@@ -197,7 +201,9 @@ const Cart = () => {
           <Badge badgeContent={cartProducts.length} style={{ color: 'red' }}>
             <TopText>Shopping Bag</TopText>
           </Badge>
-          <TopText>Your Wishlist (0)</TopText>
+          <Badge badgeContent={favProducts.length} style={{ color: 'red' }}>
+          <TopText>Your Wishlist</TopText>
+          </Badge>
         </TopTexts>
 
         <TopButton>CHECKOUT NOW</TopButton>
@@ -232,7 +238,7 @@ const Cart = () => {
                       <Remove />
                     </ProductAmountContainer>
                     <ProductPrice>$ 45</ProductPrice>
-                    <TopButton onClick={remove}>Remove</TopButton>
+                    <TopButton onClick={()=>remove(products._id)}>Remove</TopButton>
                   </PriceDetail>
                 </Product>
                 <Hr />

@@ -54,7 +54,7 @@ export const insertCart = (products: ProductType) => {
   }
 }
 
-export const removeCart = (products_id: string[]) => {
+export const removeCart = (products_id: string) => {
   return {
     type: 'REMOVE_PRODUCTS',
     payload: products_id,
@@ -66,7 +66,7 @@ export const InsertFavourite = (products: ProductType) => {
     payload: products,
   }
 }
-export const removeFavourite = (productsId: string[]) => {
+export const removeFavourite = (productsId: string) => {
   return {
     type: 'REMOVE_FAVOURITE',
     payload: productsId,

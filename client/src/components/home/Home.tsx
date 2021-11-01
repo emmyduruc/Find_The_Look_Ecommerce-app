@@ -11,30 +11,31 @@ import ProductsHome from './ProductsHome'
 import Partners from '../pages/Partners'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import HooksProduct from '../hooks/HooksProduct'
+import useHooksProduct from '../hooks/useHooksProduct'
 import { ProductType } from '../redux/types'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const [error, renderProducts] = HooksProduct()
+  const [error, renderProducts] = useHooksProduct()
   const [userInput, setUserInput] = useState('')
-  const [searchResult, setSearchResult] = useState()
+  const [searchResult, setSearchResult] = useState<ProductType[]|null>([])
 
   useEffect(() => {
-    // setSearchResult();
+    setSearchResult(renderProducts);
   }, [renderProducts]);
 
-  // const onChangeHandler = (event:any) => {
-  //   setUserInput(event.target.value);
-  //   const foundData = renderProducts.filter(
-  //     (product) => product.category[0].toLowerCase() === event.target.value.toLowerCase()
-  //   );
-  //   if (foundData.length === 0) {
-  //     setSearchResult(renderProducts);
-  //   }
+  const onChangeHandler = (event:any) => {
+    setUserInput(event.target.value);
+    const foundData = renderProducts?.filter(
+      (product) => product.category[0].toLowerCase() === event.target.value.toLowerCase()
+    );
+
+    if (foundData.length === 0) {
+      setSearchResult(renderProducts);
+    }
  
-  //    setSearchResult(foundData);
-  // };
+     setSearchResult(foundData);
+  };
 
   return (
     <div>

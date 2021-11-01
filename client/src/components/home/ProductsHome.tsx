@@ -6,7 +6,7 @@ import { Dispatch } from 'redux'
 import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
-import HooksProduct from '../hooks/HooksProduct'
+import HooksProduct from '../hooks/useHooksProduct'
 import { fetchProducts } from '../redux/actions'
 const Container = styled.div`
   padding: 20px;
