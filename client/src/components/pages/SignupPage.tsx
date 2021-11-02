@@ -70,7 +70,7 @@ const SignupPage = () => {
     localStorage.setItem('token', result.data.token)
     //  const jwtToken = result.data.token
     if (result.status === 200) {
-      // history.push('/')
+      history.push('/checkout')
       //for routing from google signup button to the home page(logged in)
     }
   }

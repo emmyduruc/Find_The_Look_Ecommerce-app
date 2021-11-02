@@ -178,8 +178,11 @@ const Cart = () => {
   const favProducts = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
-  
-  
+
+  const handleCheckout = () => {
+    !isLogin ? history.push('/signup') : history.push('/cart')
+  }
+
   const remove = (productId: string) => {
     dispatch(removeCart(productId))
   }
@@ -187,7 +190,6 @@ const Cart = () => {
     dispatch(incrementCount())
   }
 
-  console.log('print product', cartProducts)
   return (
     <Container>
       <Announcement />
@@ -202,7 +204,7 @@ const Cart = () => {
             <TopText>Shopping Bag</TopText>
           </Badge>
           <Badge badgeContent={favProducts.length} style={{ color: 'red' }}>
-          <TopText>Your Wishlist</TopText>
+            <TopText>Your Wishlist</TopText>
           </Badge>
         </TopTexts>
 
@@ -238,7 +240,9 @@ const Cart = () => {
                       <Remove />
                     </ProductAmountContainer>
                     <ProductPrice>$ 45</ProductPrice>
-                    <TopButton onClick={()=>remove(products._id)}>Remove</TopButton>
+                    <TopButton onClick={() => remove(products._id)}>
+                      Remove
+                    </TopButton>
                   </PriceDetail>
                 </Product>
                 <Hr />
@@ -266,10 +270,10 @@ const Cart = () => {
           <SummaryItemText>Total</SummaryItemText>
           <SummaryItemPrice>$ 80</SummaryItemPrice>
         </SummaryItem>
-        <Link to={'/checkout'}>
+        {/* <Link to={'/checkout'}> */}
           {/* onClick = {isLogin? history.push('/signup'):history.push('/cart')} */}
-          <Button>CHECKOUT NOW</Button>
-        </Link>
+          <Button onClick ={handleCheckout}>CHECKOUT NOW</Button>
+        {/* </Link> */}
       </Summary>
 
       <Footer />
