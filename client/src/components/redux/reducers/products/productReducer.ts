@@ -14,7 +14,6 @@ const productReducer = (
   switch (action.type) {
     case 'PRODUCT_LIST':
       const productsPayload = action.payload
-      console.log("productsPayload", productsPayload)
       return {
         ...state,
         products: productsPayload,

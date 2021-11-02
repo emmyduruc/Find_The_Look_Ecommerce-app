@@ -18,8 +18,8 @@ const Home = () => {
   const dispatch = useDispatch()
   const [error, renderProducts] = useHooksProduct()
   const [userInput, setUserInput] = useState('')
+  console.log('setInput', userInput)
   const [searchResult, setSearchResult] = useState<ProductType[] | null>([])
-
 
   useEffect(() => {
     setSearchResult(renderProducts)
@@ -29,7 +29,7 @@ const Home = () => {
     setUserInput(event.target.value)
     const foundData = renderProducts?.filter(
       (product) =>
-        product.category[0].toLowerCase() === event.target.value.toLowerCase()
+        product.category.toLowerCase() === event.target.value.toLowerCase()
     )
 
     if (foundData.length === 0) {

@@ -2,7 +2,7 @@ export type ProductType = {
   _id: string
   productName: string
   price: string
-  category: string[]
+  category: string
   productType: string
   users: string[]
   variant: string[]

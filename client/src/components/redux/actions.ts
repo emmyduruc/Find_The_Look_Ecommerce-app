@@ -8,7 +8,6 @@ export const fetchProducts = () => {
   return async (dispatch: Dispatch, getState: any) => {
     try {
       const products = await axios.get<ProductType[]>('/products')
-      console.log('products from axios', products)
       dispatch(productList(products.data))
     } catch (error) {
       dispatch(displayError(error))
@@ -27,7 +26,6 @@ export const fetchProducts_Id = (product_id: string) => {
   return async (dispatch: Dispatch, getState: any) => {
     try {
       const products = await axios.get(`/products/${product_id}`)
-      console.log('products from axios', products)
       dispatch(productList(products.data as ProductType[]))
     } catch (error) {
       dispatch(displayError(error))
