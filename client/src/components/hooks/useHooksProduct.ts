@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductType, RootState } from '../redux/types'
 import { useState, useEffect } from "react";
-import { productList } from '../redux/actions';
+import { fetchProducts, productList } from '../redux/actions';
 
 
 // type ProductProps = { productsItems: ProductType }
@@ -17,9 +17,9 @@ const useHooksProduct = ():[null, ProductType[]] => {
          return state.productReducer.error})
 
        useEffect(() => {
-         dispatch(productList (renderProducts))
+         dispatch(fetchProducts())
       
-       }, [dispatch, renderProducts]);
+       }, [dispatch]);
        return [getError, renderProducts];
 }
 
