@@ -87,8 +87,12 @@ const NeedHelp = styled.div`
   text-decoration: none;
   ${mobile({ display: 'none' })}
 `
+type Props = {
+  onChange: any
+  userInput: string
+}
 
-const Navbar = () => {
+const Navbar = ({ onChange, userInput }: any) => {
   const [showFav, setShowFav] = useState(false)
   const [open, setOpen] = React.useState(false)
 
@@ -108,7 +112,7 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input placeholder="Search" />
+            <Input placeholder="Search" value={userInput} onChange={onChange} />
             <Search style={{ color: 'gray', fontSize: 16 }} />
           </SearchContainer>
           <Link to={'/contact'}>
@@ -121,7 +125,6 @@ const Navbar = () => {
           </Center>
         </Link>
         <Right>
-          
           <Link to={'/signUp'}>
             <MenuItem>SIGN UP</MenuItem>
           </Link>

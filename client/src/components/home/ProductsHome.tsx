@@ -17,26 +17,25 @@ const Container = styled.div`
 
 
 const ProductsHome = () => {
-  // const [error, renderProducts] = HooksProduct()
-  // console.log('asjdkldkadjc', renderProducts)
-  // const dispatch = useDispatch()
-  
-  // useEffect(() => {
-  //   dispatch(fetchProducts())
-  // }, [dispatch])
-  const [product, setProduct] = useState<ProductType[]>([])
-  const getAllProducts = async () => {
-    const products = await axios.get<ProductType[]>('/products')
-    setProduct(products.data)
-  }
+  const [error, renderProducts] = HooksProduct()
+  const dispatch = useDispatch()
   useEffect(() => {
-    getAllProducts()
-  }, [])
+    dispatch(fetchProducts())
+  }, [dispatch])
+
+  // const [product, setProduct] = useState<ProductType[]>([])
+  // const getAllProducts = async () => {
+  //   const products = await axios.get<ProductType[]>('/products')
+  //   setProduct(products.data)
+  // }
+  // useEffect(() => {
+  //   getAllProducts()
+  // }, [])
 
   return (
     <div>
       <Container>
-        {product.map((item) => (
+        {renderProducts.map((item) => (
           <Product item={item} key={item._id} />
         ))}
       </Container>

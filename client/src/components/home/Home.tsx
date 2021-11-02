@@ -18,29 +18,31 @@ const Home = () => {
   const dispatch = useDispatch()
   const [error, renderProducts] = useHooksProduct()
   const [userInput, setUserInput] = useState('')
-  const [searchResult, setSearchResult] = useState<ProductType[]|null>([])
+  const [searchResult, setSearchResult] = useState<ProductType[] | null>([])
+
 
   useEffect(() => {
-    setSearchResult(renderProducts);
-  }, [renderProducts]);
+    setSearchResult(renderProducts)
+  }, [renderProducts])
 
-  const onChangeHandler = (event:any) => {
-    setUserInput(event.target.value);
+  const onChangeHandler = (event: any) => {
+    setUserInput(event.target.value)
     const foundData = renderProducts?.filter(
-      (product) => product.category[0].toLowerCase() === event.target.value.toLowerCase()
-    );
+      (product) =>
+        product.category[0].toLowerCase() === event.target.value.toLowerCase()
+    )
 
     if (foundData.length === 0) {
-      setSearchResult(renderProducts);
+      setSearchResult(renderProducts)
     }
- 
-     setSearchResult(foundData);
-  };
 
+    setSearchResult(foundData)
+  }
+  // renderProducts={renderProducts}
   return (
     <div>
       <Announcement />
-      <Nav />
+      <Nav onChange={onChangeHandler} userInput={userInput} />
       <Slider />
       <Category />
       <ProductsHome />
