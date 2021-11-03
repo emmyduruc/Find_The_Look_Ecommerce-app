@@ -14,15 +14,18 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `
+type Props = {
+  searchResult?: ProductType[] 
+}
 
-
-const ProductsHome = () => {
+const ProductsHome = ({searchResult}:Props) => {
   const [error, renderProducts] = HooksProduct()
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
 
+  const productToRender = searchResult
   // const [product, setProduct] = useState<ProductType[]>([])
   // const getAllProducts = async () => {
   //   const products = await axios.get<ProductType[]>('/products')
@@ -35,7 +38,7 @@ const ProductsHome = () => {
   return (
     <div>
       <Container>
-        {renderProducts.map((item) => (
+        {productToRender?.map((item) => (
           <Product item={item} key={item._id} />
         ))}
       </Container>

@@ -111,10 +111,10 @@ const Navbar = ({ onChange, userInput }: any) => {
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
+          {/* <SearchContainer>
             <Input placeholder="Search" value={userInput} onChange={onChange} />
             <Search style={{ color: 'gray', fontSize: 16 }} />
-          </SearchContainer>
+          </SearchContainer> */}
           <Link to={'/contact'}>
             <NeedHelp>NEED HELP?</NeedHelp>
           </Link>

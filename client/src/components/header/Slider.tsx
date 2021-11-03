@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const CarouselContainer = styled.div`
   width: 100%;
   height: 700px;
-  background-color: #CB9173;
+  background-color: #cb9173;
   display: flex;
 
   align-items: center;
@@ -113,10 +113,10 @@ const Slider = () => {
 
   return (
     <div>
-      <Carousel style={{ height: '700px',backgroundColor: '#CB9173' }}>
+      <Carousel style={{ height: '700px', backgroundColor: '#CB9173'  }}>
         <Carousel.Item>
           <CarouselContainer>
-            <CarouselImage src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F6b%2Faa%2F6baa4c9256f37b69e2e4d0edc185e1d83e3d518c.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]" />
+            <CarouselImage src="https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png" />
             <CarouselTitleContainer>
               <CarouselTextH2>AUTUMN COLLECTION</CarouselTextH2>
               <CarouselTextH3>
@@ -128,14 +128,14 @@ const Slider = () => {
                 consequuntur ad tenetur
               </CarouselTextP>
               <Link to={'/shop'}>
-              <CarouselButton>TO SHOP</CarouselButton>
+                <CarouselButton>TO SHOP</CarouselButton>
               </Link>
             </CarouselTitleContainer>
           </CarouselContainer>
         </Carousel.Item>
         <Carousel.Item>
           <CarouselContainer>
-            <CarouselImage src="https://i.ibb.co/DG69bQ4/2.png" />
+            <CarouselImage src="https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png" />
             <CarouselTitleContainer>
               <CarouselTextH2>AUTUMN COLLECTION</CarouselTextH2>
               <CarouselTextH3>
@@ -152,7 +152,7 @@ const Slider = () => {
         </Carousel.Item>
         <Carousel.Item>
           <CarouselContainer>
-            <CarouselImage src="https://i.ibb.co/cXFnLLV/3.png" />
+            <CarouselImage src="https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png" />
             <CarouselTitleContainer>
               <CarouselTextH2>AUTUMN COLLECTION</CarouselTextH2>
               <CarouselTextH3>
@@ -168,7 +168,7 @@ const Slider = () => {
           </CarouselContainer>
         </Carousel.Item>
       </Carousel>
-      <DropDownContainers style={{   backgroundColor: '#8E443D', }}>
+      <DropDownContainers style={{ backgroundColor: '#8E443D' }}>
         <DropdownButton
           variant="success"
           title="CATEGORIES"

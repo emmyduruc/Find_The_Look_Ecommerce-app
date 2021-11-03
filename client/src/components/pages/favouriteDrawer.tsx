@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '@material-ui/core/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { Badge } from '@material-ui/core'
@@ -12,9 +12,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme } from '@material-ui/core/styles'
 import { ProductType, RootState } from '../redux/types'
 import styled from 'styled-components'
+import axios from 'axios'
 import { mobile } from './Responsive'
-import { decrementCount, removeFavourite } from '../redux/actions'
-import { MdClose } from 'react-icons/md'
+import { insertCart, removeFavourite } from '../redux/actions'
+import useHooksProduct from '../hooks/useHooksProduct'
 
 const MenuItem = styled.div`
   font-size: 14px;
@@ -103,13 +104,21 @@ const TopButton = styled.button`
   color: ${(props: any) => props.type === 'filled' && 'white'};
 `
 
-function FavouriteDrawer({ open, setOpen, productId }: any) {
+function FavouriteDrawer({ open, setOpen }: any) {
+  const [error, renderProducts] = useHooksProduct()
+
   const dispatch = useDispatch()
 
-  // const [open, setOpen] = React.useState(false);
   const favouriteCounter = useSelector((state: RootState) => {
     return state.cartReducer.favourites
   })
+  
+  const insert = (productId: string) => {
+    const product = favouriteCounter.find((prod) => prod._id === productId)
+    if (product) {
+      dispatch(insertCart(product))
+    }
+  }
 
   const remove = (productId: string) => {
     dispatch(removeFavourite(productId))
@@ -174,8 +183,12 @@ function FavouriteDrawer({ open, setOpen, productId }: any) {
                     <ProductSize>
                       <b>Size:</b> 41
                     </ProductSize>
-                    <TopButton onClick={()=>remove(productItems._id)}>Remove</TopButton>
-                    <TopButton>Add to Cart</TopButton>
+                    <TopButton onClick={() => remove(productItems._id)}>
+                      Remove
+                    </TopButton>
+                    <TopButton onClick={() => insert(productItems._id)}>
+                      Add to Cart
+                    </TopButton>
                   </Descriptions>
                 </Content>
               </Wrapper>

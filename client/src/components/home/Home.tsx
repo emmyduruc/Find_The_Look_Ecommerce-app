@@ -14,38 +14,41 @@ import { useDispatch, useSelector } from 'react-redux'
 import useHooksProduct from '../hooks/useHooksProduct'
 import { ProductType } from '../redux/types'
 
+
+
 const Home = () => {
-  const dispatch = useDispatch()
-  const [error, renderProducts] = useHooksProduct()
-  const [userInput, setUserInput] = useState('')
-  console.log('setInput', userInput)
-  const [searchResult, setSearchResult] = useState<ProductType[] | null>([])
+  // const [error, renderProducts] = useHooksProduct()
 
-  useEffect(() => {
-    setSearchResult(renderProducts)
-  }, [renderProducts])
+  // const [userInput, setUserInput] = useState('')
+  // console.log('setInput', userInput)
 
-  const onChangeHandler = (event: any) => {
-    setUserInput(event.target.value)
-    const foundData = renderProducts?.filter(
-      (product) =>
-        product.category.toLowerCase() === event.target.value.toLowerCase()
-    )
+  // const [searchResult, setSearchResult] = useState<ProductType[] | null>([])
 
-    if (foundData.length === 0) {
-      setSearchResult(renderProducts)
-    }
+  // useEffect(() => {
+  //   setSearchResult(renderProducts)
+  // }, [renderProducts])
 
-    setSearchResult(foundData)
-  }
-  // renderProducts={renderProducts}
+  // const onChangeHandler = (event: any) => {
+  //   setUserInput(event.target.value)
+  //   const foundData = renderProducts?.filter(
+  //     (product) =>
+  //       product.category.toLowerCase().includes(event.target.value.toLowerCase())
+  //   )
+  // console.log('foundData', foundData)
+  // console.log('renderProducts', renderProducts)
+  //   if (foundData.length === 0) {
+  //     setSearchResult(renderProducts)
+  //   }
+
+  //   setSearchResult(foundData)
+  
   return (
     <div>
       <Announcement />
-      <Nav onChange={onChangeHandler} userInput={userInput} />
+      <Nav />
       <Slider />
       <Category />
-      <ProductsHome />
+      <ProductsHome  />
       <NewArrivals />
       <ProductsHome />
       <Partners />

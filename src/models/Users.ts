@@ -17,6 +17,7 @@ export type UserDocument = Document & {
   picture: string
   product: string[]
   cart: string[]
+  role: string
 }
 
 const userSchema = new mongoose.Schema({
