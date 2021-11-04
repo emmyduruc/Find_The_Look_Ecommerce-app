@@ -40,6 +40,7 @@ const TopButton = styled.button`
   background-color: ${(props: any) =>
     props.type === 'filled' ? 'black' : 'transparent'};
   color: ${(props: any) => props.type === 'filled' && 'white'};
+  ${mobile({ display: 'flex', align: 'center'})}
 `
 
 const TopTexts = styled.div`
