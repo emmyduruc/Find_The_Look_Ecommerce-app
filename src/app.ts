@@ -29,7 +29,8 @@ app.use(lusca.xframe('SAMEORIGIN'))
 app.use(lusca.xssProtection(true))
 //initializing the passport middleware
 app.use(passport.initialize())
-
+// watch-ts
+//"jwt": "^0.2.0",
 //then define the strategies used
 passport.use(googleStrategy)
 passport.use(jwtStrategy)

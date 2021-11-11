@@ -9,7 +9,6 @@ export type ProductDocument = Document & {
   title: string
   description: string
   category: string
-
   users: string[]
   variant: string[]
   image: string
