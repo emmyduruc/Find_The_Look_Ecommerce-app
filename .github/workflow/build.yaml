@@ -20,3 +20,5 @@ jobs:
         run: yarn
       - name: Build dist
         run: yarn run build-ts
+      - name: Build dist
+        run: yarn run test
