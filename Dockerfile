@@ -19,3 +19,4 @@ CMD ["yarn", "run", "watch"]
 #docker
 #docker
 #docker
+#CI/CD action (gitlab,git actions,jenkins)
